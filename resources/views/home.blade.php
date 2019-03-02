@@ -6,8 +6,9 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-
                 <div class="card-body">
+                    <p><a href="http://phpmyadmin.app" target="_blank">phpmyadmin</a> med hemligt lösenord</p>
+                    <hr>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
