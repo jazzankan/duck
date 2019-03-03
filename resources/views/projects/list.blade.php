@@ -3,5 +3,8 @@
 @section('content')
     <div class="container">
         <h1>Mina projekt</h1>
+        <ul>
+
+        </ul>
     <div>
 @endsection
