@@ -14,6 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Project' => 'App\Policies\ProjectPolicy'
     ];
 
     /**
@@ -25,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+       /* Gate::before(function($user){
+            return $user->id == 1;  //admin id.
+        });*/
     }
 }
