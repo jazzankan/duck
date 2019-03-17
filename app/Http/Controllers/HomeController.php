@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+        /*if(isset(auth()->user()->name)) {
+            $username = auth()->user()->name;
+            $pageowner = 's startsida';
+            if (substr($username, -1) === 's') {
+                $pageowner = ' startsida';
+            }
+            return view('home')->with('pageowner', $pageowner);
+        }
+        else{
+            return view('home');
+        }*/
         return view('home');
     }
+
 }

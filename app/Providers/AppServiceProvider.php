@@ -13,7 +13,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.app', function($view) {
+            if(isset(auth()->user()->name)) {
+                $username = auth()->user()->name;
+                $pageowner = 's startsida';
+                if (substr($username, -1) === 's') {
+                    $pageowner = ' startsida';
+                }
+                $view->with('pageowner', $pageowner);
+            }
+        });
     }
 
     /**
