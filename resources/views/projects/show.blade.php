@@ -7,5 +7,5 @@
         <p><span class="font-weight-bold">Beskrivning:</span><br>
         {{ $project->description }}</p>
         <p><span class="font-weight-bold">Deadline:</span> {{ $project->deadline }}</p>
-        <div>
+        </div>
 @endsection
