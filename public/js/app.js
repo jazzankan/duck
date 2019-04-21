@@ -1775,7 +1775,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     return {
-      time1: '',
+      time1: '2019-05-05',
       time2: '',
       time3: '',
       // custom lang
@@ -49134,10 +49134,11 @@ Vue.component(__webpack_require__(/*! ./components/DatepickerComponent.vue */ ".
 var app = new Vue({
   el: '#app',
   data: {
-    time1: '',
+    time1: document.getElementById("date").value,
     lang: ''
   }
 });
+console.log(document.getElementById("date").value);
 
 /***/ }),
 

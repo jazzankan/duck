@@ -33,6 +33,8 @@ Vue.component(require('./components/DatepickerComponent.vue').default);
 const app = new Vue({
     el: '#app',
     data: {
-        time1: '', lang: ''
+        time1: document.getElementById("date").value, lang: ''
     }
 });
+
+console.log(document.getElementById("date").value);

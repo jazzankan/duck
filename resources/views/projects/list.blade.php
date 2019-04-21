@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-        <p><a href="/posts" class="btn btn-default">Tilbaka till listan</a></p>
         <h1>Mina projekt</h1>
         @if(count($projectlist) > 0)
         <ul class="list-group">

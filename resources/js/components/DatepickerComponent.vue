@@ -6,7 +6,7 @@
         name: 'date-picker',
         data() {
             return {
-                time1: '',
+                time1: '2019-05-05',
                 time2: '',
                 time3: '',
                 // custom lang

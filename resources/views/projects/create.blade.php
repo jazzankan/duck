@@ -9,13 +9,14 @@
             <div class="form-group">
                 @csrf
                 <label for="title">Namn:</label>
-                <input type="text" class="form-control" name="title"/>
+                <input type="text" class="form-control" value="{{ old('title') }}" name="title"/>
             </div>
             <div class="form-group">
                 <label for="description">Beskrivning:</label>
-                <textarea class="form-control" name="description"></textarea>
+                <textarea class="form-control" name="description">{{ old('description')}}</textarea>
             </div>
             <div class="form-group">
+                <input type="hidden" name="date" id="date" value ="{{ old('deadline') != null ? old('deadline') : ''}}"/>
                 <label for="deadline">Deadline om det finns någon:</label>
                 <template>
                     <div>
@@ -24,10 +25,12 @@
                 </template>
             </div>
             <div class="radio">
-                <label><input type="radio" name="must" value="y" checked>Plikt</label>
+                <label><input type="radio" name="must" value="y" {{ (old('must') === 'n') ? '' : 'checked' }}>Plikt</label>
             </div>
             <div class="radio">
-                <label><input type="radio" name="must" value="n">Hobby eller nöje</label>
+                <label><input type="radio" name="must" {{ (old('must') === 'n') ? 'checked' : '' }} value="n">Hobby eller nöje</label>
+            </div>
+            <div>
             </div>
             <button type="submit" class="btn btn-primary">Skapa</button>
         </form>
