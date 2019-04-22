@@ -25,15 +25,21 @@
                     </div>
                 </template>
             </div>
+            <div class="form-group">
             <div class="radio">
                 <label><input type="radio" name="must" value="y" {{ ($project->must != 'n') ? 'checked' : '' }}>Plikt</label>
             </div>
             <div class="radio">
                 <label><input type="radio" name="must" {{ ($project->must === 'n') ? 'checked' : '' }} value="n">Hobby eller nöje</label>
             </div>
-            <div>
             </div>
-            <button type="submit" class="btn btn-primary">Skapa</button>
+            <div class="form-group">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="visible" name="visible" value="n">
+                <label class="custom-control-label" for="visible">Arkivera projektet. Syns då inte längre i vanliga projektlistan.</label>
+            </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Skicka</button>
         </form>
     </div>
     <div>
