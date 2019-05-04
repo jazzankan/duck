@@ -2,10 +2,11 @@
 
 @section('content')
     <div class="container">
-        <h1>Mina projekt</h1>
-        @if(count($projectlist) > 0)
+        @if(count($visibleproj) > 0)
+            <h1>Mina projekt</h1>
+            <p><a href="/projects/create" class="btn btn-primary btn-sm">Nytt projekt</a></p>
         <ul class="list-group">
-            @foreach ($projectlist as $project)
+            @foreach ($visibleproj as $project)
                 <li class="list-group-item"><h4><a href="/projects/{{ $project->id }}">{{ $project->title }}</a></h4></li>
             @endforeach
         </ul>

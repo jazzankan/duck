@@ -4,11 +4,11 @@
 
 @section('content')
     <div class="container">
-        <h1>Redigera ett projekt</h1>
+        <h1>Redigera projektet {{ $project->title }}</h1>
         <form method="post" action="/projects/{{ $project->id  }}">
             {{ method_field('PATCH') }}
+            @csrf
             <div class="form-group">
-                @csrf
                 <label for="title">Namn:</label>
                 <input type="text" class="form-control" value="{{ $project->title }}" name="title"/>
             </div>
@@ -36,8 +36,14 @@
             <div class="form-group">
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="visible" name="visible" value="n">
-                <label class="custom-control-label" for="visible">Arkivera projektet. Syns då inte längre i vanliga projektlistan.</label>
+                <label class="custom-control-label" for="visible">Arkivera projektet. Det syns då inte längre i den vanliga projektlistan.</label>
             </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="delete" name="delete" value="delete">
+                    <label class="custom-control-label" for="delete">Ta bort projektet for gott. All tillhörande data tas bort!</label>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Skicka</button>
         </form>
