@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Redigera projektet {{ $project->title }}</h1>
+        <h1>Redigera projektet <span class="projtitel">{{ $project->title }}</span></h1>
         <form method="post" action="/projects/{{ $project->id  }}">
             {{ method_field('PATCH') }}
             @csrf
@@ -34,6 +34,7 @@
             </div>
             </div>
             <div class="form-group">
+            <div class="formgroup">
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="visible" name="visible" value="n">
                 <label class="custom-control-label" for="visible">Arkivera projektet. Det syns då inte längre i den vanliga projektlistan.</label>

@@ -8,5 +8,13 @@
         <p><span class="font-weight-bold">Beskrivning:</span><br>
         {{ $project->description }}</p>
         <p><span class="font-weight-bold">Deadline:</span> {{ $project->deadline }}</p>
+        <p>
+        <ul class="sharing">
+            <li class="list-inline-item font-weight-bold">Projektet delas med: </li>
+            @foreach($sharing as $s)
+                    <li class="list-inline-item">{{ $s }}</li>
+                    @endforeach
+            </ul>
+        </p>
         </div>
 @endsection

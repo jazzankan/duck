@@ -10659,6 +10659,14 @@ a.text-dark:focus {
   font-size: 1.2em;
 }
 
+.projtitel {
+  color: mediumblue;
+}
+
+ul.sharing {
+  padding-left: 0;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
