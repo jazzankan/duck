@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,8 +31,21 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function sharing($myname, $project)
     {
-        //
+        $sharing = array();
+        $user = User::all();
+        foreach($user as $u) {
+            foreach($u->projects as $p) {
+                if ($p->id == $project->id) {
+                    array_push($sharing, $u->name);
+                }
+            }
+        }
+
+        if (($key = array_search($myname, $sharing)) !== false) {
+            unset($sharing[$key]);
+        }
+        return $sharing;
     }
 }
