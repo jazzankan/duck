@@ -84,20 +84,7 @@ class ProjectController extends Controller
         $this->authorize('view', $project);
 
         $myname = auth()->user()->name;
-        $sharing = sharing($myname, $project);
-        /*$sharing = array();
-        $user = User::all();
-        foreach($user as $u) {
-            foreach($u->projects as $p) {
-                if ($p->id == $project->id) {
-                    array_push($sharing, $u->name);
-                }
-            }
-        }
-
-        if (($key = array_search($myname, $sharing)) !== false) {
-            unset($sharing[$key]);
-        }*/
+        $sharing = User::Shared($myname, $project);
 
         return view('projects.show')->with('project',$project)->with('sharing',$sharing);
     }
@@ -112,7 +99,17 @@ class ProjectController extends Controller
     {
        $this->authorize('update',$project);
 
-        return view('projects.edit',compact('project'));
+        $myname = auth()->user()->name;
+        $users = User::all();
+        $usernames = array();
+        foreach ($users as $u) {
+            if($u->name !== $myname) {
+                array_push($usernames, $u->name);
+                    }
+                };
+        $sharing = User::Shared($myname, $project);
+
+        return view('projects.edit')->with('project',$project)->with('usernames',$usernames)->with('sharing',$sharing);
     }
 
     /**

@@ -8,6 +8,7 @@
         <p><span class="font-weight-bold">Beskrivning:</span><br>
         {{ $project->description }}</p>
         <p><span class="font-weight-bold">Deadline:</span> {{ $project->deadline }}</p>
+        @if(count($sharing) > 0)
         <p>
         <ul class="sharing">
             <li class="list-inline-item font-weight-bold">Projektet delas med: </li>
@@ -16,5 +17,6 @@
                     @endforeach
             </ul>
         </p>
+            @endif
         </div>
 @endsection

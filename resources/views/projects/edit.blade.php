@@ -34,8 +34,16 @@
             </div>
             </div>
             <div class="formgroup">
-                Projektet delas med:<br>
-                Anders
+                Dela projektet med:<br>
+                <select multiple>
+                    @foreach($usernames as $s)
+                        @if(in_array( $s, $sharing))
+                        <option value ="{{ $s }}" selected>{{ $s }}</option>
+                        @else
+                            <option value ="{{ $s }}">{{ $s }}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
             <div class="formgroup">
                 <div class="custom-control custom-checkbox">
