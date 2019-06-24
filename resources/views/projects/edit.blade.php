@@ -35,7 +35,7 @@
             </div>
             <div class="formgroup">
                 Dela projektet med:<br>
-                <select multiple>
+                <select multiple name="selshare[]">
                     @foreach($usernames as $s)
                         @if(in_array( $s, $sharing))
                         <option value ="{{ $s }}" selected>{{ $s }}</option>

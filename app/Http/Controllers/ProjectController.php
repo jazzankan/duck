@@ -121,6 +121,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+
         if($request['delete'] === 'delete'){
             $this->destroy($project);
             return redirect('/projects');
@@ -140,7 +141,29 @@ class ProjectController extends Controller
             'visible' => 'required'
         ]);
 
+        $allUsers = User::all();
+        $me = auth()->user();
+
+        $getSharingUsers = User::whereIn('name',$request['selshare'])->get();
+
+        //Avstår tills vidare från funktion för att återta delning.
+
+        foreach($getSharingUsers as $g){
+            if(!$g->projects->contains($project->id)){
+                $g->projects()->attach($project->id);
+            }
+        }
+
+
+
+
+        //dd($shareId->name);
+        //$me->projects()->detach();
+
+
         $project->update(request(['title','description','deadline','must','visible']));
+
+
 
         return redirect('/projects/' . $project->id);
 
@@ -154,7 +177,16 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+
+
         $this->authorize('view',$project);
+
+        $allUsers = User::all();
+
+        foreach($allUsers as $a) {
+            $a->projects()->detach($project);
+        }
+
         $project->delete();
     }
 }
