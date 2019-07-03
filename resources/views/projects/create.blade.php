@@ -32,6 +32,14 @@
             </div>
             <div>
             </div>
+            <div class="form-group">
+                Dela projektet med:<br>
+                <select multiple name="selshare[]">
+                    @foreach($usernames as $s)
+                            <option value ="{{ $s }}">{{ $s }}</option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Skapa</button>
         </form>
         </div>

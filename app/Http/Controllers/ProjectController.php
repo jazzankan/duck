@@ -37,7 +37,16 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view ('projects.create');
+        $myname = auth()->user()->name;
+        $users = User::all();
+        $usernames = array();
+        foreach ($users as $u) {
+            if($u->name !== $myname) {
+                array_push($usernames, $u->name);
+            }
+        };
+
+        return view ('projects.create')->with('usernames',$usernames);
     }
 
     /**
@@ -69,6 +78,16 @@ class ProjectController extends Controller
         $user_id = auth()->id();
 
         $project->users()->attach($user_id);
+
+        $getSharingUsers = User::whereIn('name',$request['selshare'])->get();
+
+        //Avstår tills vidare från funktion för att återta delning.
+
+        foreach($getSharingUsers as $g){
+            if(!$g->projects->contains($project->id)){
+                $g->projects()->attach($project->id);
+            }
+        }
 
         return redirect('/projects');
     }

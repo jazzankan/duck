@@ -33,7 +33,7 @@
                 <label><input type="radio" name="must" {{ ($project->must === 'n') ? 'checked' : '' }} value="n">Hobby eller nöje</label>
             </div>
             </div>
-            <div class="formgroup">
+            <div class="form-group">
                 Dela projektet med:<br>
                 <select multiple name="selshare[]">
                     @foreach($usernames as $s)
@@ -45,7 +45,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="formgroup">
+            <div class="form-group">
                 <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="visible" name="visible" value="n">
                 <label class="custom-control-label" for="visible">Arkivera projektet. Det syns då inte längre i den vanliga projektlistan.</label>
