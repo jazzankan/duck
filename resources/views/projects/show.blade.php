@@ -17,6 +17,12 @@
                     @endforeach
             </ul>
         </p>
-            @endif
+        @endif
+        <hr>
+            <div class="todos">
+                <h3>Arbetsuppgifter</h3>
+                <a href="/todos/create/{{ $project->id }}" class="btn btn-primary btn-sm">Skapa arbetsuppgift</a>
+            </div>
+
         </div>
 @endsection

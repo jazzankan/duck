@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::resources(['/projects' => 'ProjectController']);
+
+Route::get('/todos/create/{project_id}', 'TodoController@create');
+
+Route::resources(['/todos' => 'TodoController']);

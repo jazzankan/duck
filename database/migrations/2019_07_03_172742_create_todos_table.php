@@ -20,7 +20,7 @@ class CreateTodosTable extends Migration
             $table->string('title');
             $table->mediumText('details');
             $table->date('deadline');
-            $table->enum('status',array('n', 'o','d'));
+            $table->enum('status',array('n', 'o','d'))->default('n');
             $table->enum('priority',array('l', 'm','h'));
             $table->string('assigned');
             $table->timestamps();

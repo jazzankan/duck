@@ -163,13 +163,16 @@ class ProjectController extends Controller
         $allUsers = User::all();
         $me = auth()->user();
 
-        $getSharingUsers = User::whereIn('name',$request['selshare'])->get();
+        if($request['selshare']) {
+            $getSharingUsers = User::whereIn('name', $request['selshare'])->get();
 
-        //Avstår tills vidare från funktion för att återta delning.
+            //Avstår tills vidare från funktion för att återta delning.
 
-        foreach($getSharingUsers as $g){
-            if(!$g->projects->contains($project->id)){
-                $g->projects()->attach($project->id);
+
+            foreach ($getSharingUsers as $g) {
+                if (!$g->projects->contains($project->id)) {
+                    $g->projects()->attach($project->id);
+                }
             }
         }
 
