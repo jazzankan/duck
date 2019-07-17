@@ -25,13 +25,18 @@
                 </template>
             </div>
             <div class="radio">
-                <label><input type="radio" name="prio" value="l"> Lågprioriterad</label>
+                <label><input type="radio" name="prio" value="l" {{ (old('prio') === 'l') ? 'checked' : '' }}> Lågprioriterad</label>
             </div>
             <div class="radio">
-                <label><input type="radio" name="prio" value="m" checked="checked"> Medelprioriterad</label>
+                <label><input type="radio" name="prio" value="m" {{ (old('prio') === 'l' || old('prio') === 'h') ? '' : 'checked' }}> Medelprioriterad</label>
             </div>
             <div class="radio">
-                <label><input type="radio" name="prio"  value="h"> Högprioriterad</label>
+                <label><input type="radio" name="prio"  value="h" {{ (old('prio') === 'h') ? 'checked' : '' }}> Högprioriterad</label>
+            </div>
+            <div class="form-group">
+                @csrf
+                <label for="title">Ska utföras av:</label>
+                <input type="text" class="form-control" value="{{ old('title') }}" name="title"/>
             </div>
             <div>
             </div>
