@@ -67,9 +67,6 @@ class ProjectController extends Controller
             'deadline' => 'nullable|date',
             'must' => 'required',
             'visible' => 'required'
-
-
-
         ]);
         //$attributes['user_id'] = auth()->id();
 

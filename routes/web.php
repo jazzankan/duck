@@ -21,6 +21,6 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resources(['/projects' => 'ProjectController']);
 
-Route::get('/todos/create/{project_id}', 'TodoController@create');
+Route::get('/todos/create/{projectid}', 'TodoController@create')->name('newtask');
 
 Route::resources(['/todos' => 'TodoController']);

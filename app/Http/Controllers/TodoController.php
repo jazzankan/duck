@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Todo;
 use Illuminate\Http\Request;
+use App\Project;
 
 class TodoController extends Controller
 {
@@ -22,9 +23,11 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($projectid)
     {
-        return view('todos.create');
+        $taskProject = Project::where('id', $projectid)->first();
+
+        return view('todos.create')->with('taskProject',$taskProject);
     }
 
     /**
@@ -35,7 +38,18 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $attributes = request()->validate([
+
+            'title' => 'required | min:3',
+            'details' => 'required | min:5',
+            'deadline' => 'nullable|date',
+            'status' => 'required',
+            'prio' => 'required',
+            'assigned' => 'required'
+        ]);
+
+        return redirect('/projects/{$project->id}');
     }
 
     /**
