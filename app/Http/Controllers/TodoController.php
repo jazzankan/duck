@@ -38,6 +38,8 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
+        $request['status'] = 'n';
+        $request['deadline'] = $request['date'];
 
         $attributes = request()->validate([
 
@@ -45,11 +47,13 @@ class TodoController extends Controller
             'details' => 'required | min:5',
             'deadline' => 'nullable|date',
             'status' => 'required',
-            'prio' => 'required',
-            'assigned' => 'required'
+            'priority' => 'required',
+            'assigned' => 'required',
+            'project_id' => 'required'
         ]);
+        Todo::create($attributes);
 
-        return redirect('/projects/{$project->id}');
+        return redirect('/projects/' . $request['project_id']);
     }
 
     /**

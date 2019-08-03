@@ -20,8 +20,19 @@
         @endif
         <hr>
             <div class="todos">
+                <div>
                 <h3>Arbetsuppgifter</h3>
-                <a href="{{ route('newtask', ['projectid' => $project->id])}}" class="btn btn-primary btn-sm">Skapa arbetsuppgift</a>
+                <p>
+                    <a href="{{ route('newtask', ['projectid' => $project->id])}}" class="btn btn-primary btn-sm">Skapa arbetsuppgift</a>
+                </p>
+                </div>
+                <div>
+                    <ul class="list-group">
+                        @foreach ($belongingtodos as $todo)
+                          <li class="list-group-item">{{ $todo->title }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
 
         </div>
