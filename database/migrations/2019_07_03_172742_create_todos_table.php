@@ -19,7 +19,7 @@ class CreateTodosTable extends Migration
             $table->foreign('project_id')->references('id')->on('projects');
             $table->string('title');
             $table->mediumText('details');
-            $table->date('deadline');
+            $table->date('deadline')->nullable();
             $table->enum('status',array('n', 'o','d'))->default('n');
             $table->enum('priority',array('l', 'm','h'));
             $table->string('assigned');

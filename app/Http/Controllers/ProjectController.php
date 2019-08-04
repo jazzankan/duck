@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\User;
+use App\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -102,7 +103,11 @@ class ProjectController extends Controller
         $myname = auth()->user()->name;
         $sharing = User::Shared($myname, $project);
 
-        return view('projects.show')->with('project',$project)->with('sharing',$sharing);
+        $belongingtodos = Todo::whereIn('project_id', [$project->id])->orderBy('deadline', 'ASC')->get();
+
+        //dd($belongingtodos);
+
+        return view('projects.show')->with('project',$project)->with('sharing',$sharing)->with('belongingtodos',$belongingtodos);
     }
 
     /**
