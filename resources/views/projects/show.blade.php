@@ -26,11 +26,13 @@
                     <a href="{{ route('newtask', ['projectid' => $project->id])}}" class="btn btn-primary btn-sm">Skapa arbetsuppgift</a>
                 </p>
                 </div>
-                <div>
+                <div class="todolist">
+                    @if($belongingtodos->isNotEmpty())
                     <ul class="list-group">
                         @foreach ($belongingtodos as $todo)
-                          <li class="list-group-item">{{ $todo->title }}</li>
+                            <li class="list-group-item"><a class="todolink" href="/todos/{{ $todo->id }}">{{ $todo->title }}</a><span class="todoline"><span class="deadline"> Deadline: {{ $todo->deadline }}, </span><span class="details"><a href="#"> Detaljer</a>, </span><span class="priority"> Prio: {{ $todo->priority }}, </span><span class="status"> Status: {{ $todo->status }}</span>{{$todo->assigned}}</span></li>
                         @endforeach
+                     @endif
                     </ul>
                 </div>
             </div>

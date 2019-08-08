@@ -48,7 +48,7 @@ class TodoController extends Controller
             'deadline' => 'nullable|date',
             'status' => 'required',
             'priority' => 'required',
-            'assigned' => 'required',
+            'assigned' => 'nullable',
             'project_id' => 'required'
         ]);
         Todo::create($attributes);

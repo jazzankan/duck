@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="title">Ska utföras av:</label>
-                <input type="text" class="form-control" value="{{ old('title') }}" name="assigned"/>
+                <input type="text" class="form-control" value="{{ old('assigned') }}" name="assigned"/>
             </div>
             <div>
                 <input type="hidden" value="{{ $taskProject->id }}"  name="project_id"/>

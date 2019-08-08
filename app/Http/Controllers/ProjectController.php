@@ -106,6 +106,12 @@ class ProjectController extends Controller
         $belongingtodos = Todo::whereIn('project_id', [$project->id])->orderBy('deadline', 'ASC')->get();
 
         //dd($belongingtodos);
+        $belongingtodos->each(function ($todo, $key) {
+            if ($todo['assigned'] != null) {
+            $todo['assigned'] = ", <span class='assigned'>Utförs av: " . $todo['assigned'] . "</span>";
+            }
+        });
+
 
         return view('projects.show')->with('project',$project)->with('sharing',$sharing)->with('belongingtodos',$belongingtodos);
     }

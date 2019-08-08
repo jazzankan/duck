@@ -10667,6 +10667,22 @@ ul.sharing {
   padding-left: 0;
 }
 
+.todolist {
+  max-width: 800px;
+}
+
+.todolink {
+  font-weight: 600;
+}
+
+.todoline {
+  float: right;
+}
+
+/*.deadline {
+    margin-left:15px;
+}*/
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
