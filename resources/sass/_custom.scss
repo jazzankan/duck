@@ -16,6 +16,10 @@ ul.sharing {
 .todoline {
     float: right;
 }
-/*.deadline {
-    margin-left:15px;
-}*/
+ul.striped-list > li:nth-of-type(odd) {
+    background-color: #e9e9f9 ;
+}
+.btn-link {
+    padding: 0px;
+
+}

@@ -44,7 +44,7 @@ class TodoController extends Controller
         $attributes = request()->validate([
 
             'title' => 'required | min:3',
-            'details' => 'required | min:5',
+            'details' => 'nullable | min:5',
             'deadline' => 'nullable|date',
             'status' => 'required',
             'priority' => 'required',

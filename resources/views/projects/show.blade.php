@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detaljer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Här ska själva detaljerna synas...
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <p><a href="/projects" class="btn btn-primary btn-sm">Tillbaka till projektlistan</a> <a href="/projects/{{ $project->id }}/edit" class="btn btn-primary btn-sm">Redigera projektet</a></p>
         <h1>{{ $project->title }}</h1>
@@ -28,10 +44,13 @@
                 </div>
                 <div class="todolist">
                     @if($belongingtodos->isNotEmpty())
-                    <ul class="list-group">
+                    <ul class="list-group striped-list">
+                        <li class="list-group-item"><h5>Ogjort</h5></li>
                         @foreach ($belongingtodos as $todo)
-                            <li class="list-group-item"><a class="todolink" href="/todos/{{ $todo->id }}">{{ $todo->title }}</a><span class="todoline"><span class="deadline"> Deadline: {{ $todo->deadline }}, </span><span class="details"><a href="#"> Detaljer</a>, </span><span class="priority"> Prio: {{ $todo->priority }}, </span><span class="status"> Status: {{ $todo->status }}</span>{{$todo->assigned}}</span></li>
-                        @endforeach
+                            @if($todo->status === 'n')
+                                <li class="list-group-item"><a class="todolink" href="/todos/{{ $todo->id }}">{{ $todo->title }}</a><span class="todoline"><span class="deadline"> Deadline: <b>{{ $todo->deadline }}</b>&nbsp;&nbsp;</span><span class="priority"><b>{{ $todo->priority }}</b></span>&nbsp;&nbsp;<span class="assigned"><b>{{$todo->assigned}}</b></span>&nbsp;&nbsp;<span class="details">{!! $todo->details !!}</span></li>
+                            @endif
+                            @endforeach
                      @endif
                     </ul>
                 </div>
