@@ -105,8 +105,8 @@ class ProjectController extends Controller
 
         $belongingtodos = Todo::whereIn('project_id', [$project->id])->orderBy('deadline', 'ASC')->get();
 
-        //dd($belongingtodos);
-        $detailslink = "";
+        $detlink = false;
+
         $belongingtodos->each(function ($todo, $key) {
             if ($todo['assigned']) {
             $todo['assigned'] = " Utförs av: " . $todo['assigned'];
@@ -126,10 +126,6 @@ class ProjectController extends Controller
             if($todo['priority'] == "h") {
                 $todo['priority'] = "Prio: Hög ";
             }
-            if($todo['details']) {
-                $todo['details']  = "<span><button type='button' class='btn btn-link' data-toggle='modal' data-target='#detailsModal'>Detaljer</button></span>";
-            }
-
         });
 
 

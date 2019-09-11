@@ -1775,7 +1775,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     return {
-      time1: '2019-05-05',
+      time1: '',
       time2: '',
       time3: '',
       // custom lang
@@ -49123,7 +49123,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
+Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default); //Vue.component('todo-detail',require('./components/TodoComponent.vue').default);
+
 Vue.component(__webpack_require__(/*! ./components/DatepickerComponent.vue */ "./resources/js/components/DatepickerComponent.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -49134,11 +49135,18 @@ Vue.component(__webpack_require__(/*! ./components/DatepickerComponent.vue */ ".
 var app = new Vue({
   el: '#app',
   data: {
-    time1: document.getElementById("date").value,
-    lang: ''
+    time1: document.getElementById("date") ? document.getElementById("date").value : '',
+    lang: '',
+    detail: ''
+  },
+  methods: {
+    getDetail: function getDetail(event, taskdet) {
+      this.detail = taskdet;
+      console.log(taskdet);
+      return this.detail;
+    }
   }
 });
-console.log(document.getElementById("date").value);
 
 /***/ }),
 

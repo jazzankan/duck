@@ -2,7 +2,8 @@
 
 @section('content')
     <!-- Modal -->
-    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true" xmlns:v-on="http://www.w3.org/1999/xhtml">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -12,7 +13,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Här ska själva detaljerna synas...
+                    <p>@{{ detail }}</p>
                 </div>
             </div>
         </div>
@@ -48,13 +49,12 @@
                         <li class="list-group-item"><h5>Ogjort</h5></li>
                         @foreach ($belongingtodos as $todo)
                             @if($todo->status === 'n')
-                                <li class="list-group-item"><a class="todolink" href="/todos/{{ $todo->id }}">{{ $todo->title }}</a><span class="todoline"><span class="deadline"> Deadline: <b>{{ $todo->deadline }}</b>&nbsp;&nbsp;</span><span class="priority"><b>{{ $todo->priority }}</b></span>&nbsp;&nbsp;<span class="assigned"><b>{{$todo->assigned}}</b></span>&nbsp;&nbsp;<span class="details">{!! $todo->details !!}</span></li>
+                                <li class="list-group-item"><a class="todolink" href="/todos/{{ $todo->id }}">{{ $todo->title }}</a><span class="todoline"><span class="deadline"> Deadline: <b>{{ $todo->deadline }}</b>&nbsp;&nbsp;</span><span class="priority"><b>{{ $todo->priority }}</b></span>&nbsp;&nbsp<span class="assigned"><b>{{$todo->assigned}}</b></span>&nbsp;&nbsp<span><button type='button' class='btn btn-link' data-toggle='modal' data-target='#detailsModal' @click="getDetail($event, '{{ $todo->details }}')"><span v-if="'{{ $todo->details }}'">Detaljer</span></button></span></span></li>
                             @endif
                             @endforeach
                      @endif
                     </ul>
                 </div>
-            </div>
-
         </div>
+    </div>
 @endsection

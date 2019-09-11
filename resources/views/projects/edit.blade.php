@@ -17,7 +17,7 @@
                 <textarea class="form-control" name="description">{{ $project->description }}</textarea>
             </div>
             <div class="form-group">
-                <input type="hidden" name="date" id="date" value ="{{ ($project->deadline != null) ? $project->deadline : '' }}" />
+                <input type="hidden" name="date" id="date"  value ="{{ ($project->deadline != null) ? $project->deadline : '' }}" />
                 <label for="deadline">Deadline om det finns någon:</label>
                 <template>
                     <div>

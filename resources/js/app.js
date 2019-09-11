@@ -21,7 +21,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+//Vue.component('todo-detail',require('./components/TodoComponent.vue').default);
 Vue.component(require('./components/DatepickerComponent.vue').default);
+
 
 
 /**
@@ -33,8 +35,16 @@ Vue.component(require('./components/DatepickerComponent.vue').default);
 const app = new Vue({
     el: '#app',
     data: {
-        time1: document.getElementById("date").value, lang: ''
+        time1: document.getElementById("date") ? document.getElementById("date").value : '',
+        lang: '',
+        detail: ''
+    },
+    methods: {
+        getDetail: function (event,taskdet) {
+            this.detail = taskdet;
+            console.log(taskdet);
+            return this.detail;
+        }
     }
 });
 
-console.log(document.getElementById("date").value);
