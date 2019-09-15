@@ -75,7 +75,9 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
+        $project = Project::where('id', $todo['project_id'])->first();
+
+        return view('todos.edit')->with('todo',$todo)->with('project',$project);
     }
 
     /**
@@ -85,6 +87,7 @@ class TodoController extends Controller
      * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Todo $todo)
     {
         //
