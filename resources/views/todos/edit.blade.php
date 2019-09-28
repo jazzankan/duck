@@ -42,8 +42,12 @@
                 <label for="title">Ska utföras av:</label>
                 <input type="text" class="form-control" value="{{ $todo->assigned }}" name="assigned"/>
             </div>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="delete" name="delete" value="delete">
+                <label class="custom-control-label" for="delete">Ta bort arbetsuppgiften helt!</label>
+            </div>
             <input type="hidden" name="projid" value="{{ $project->id }}">
-            <button type="submit" class="btn btn-primary">Uppdatera</button>
+            <button type="submit" class="btn btn-primary btop">Uppdatera</button>
         </form>
     </div>
     <div>

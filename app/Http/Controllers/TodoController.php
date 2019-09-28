@@ -13,6 +13,11 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+
+        $this->middleware('auth');  //->only(['store','update']) eller ->except....
+    }
+
     public function index()
     {
         //
@@ -40,6 +45,9 @@ class TodoController extends Controller
     {
         $request['status'] = 'n';
         $request['deadline'] = $request['date'];
+        $detailstring = $request['details'];
+
+        $request['details'] = str_replace("\r\n", '&#13;', $detailstring);
 
         $attributes = request()->validate([
 
@@ -90,7 +98,14 @@ class TodoController extends Controller
 
     public function update(Request $request, Todo $todo)
     {
+        //$this->authorize('update',$todo);
+
         $projid =  $request['projid'];
+
+        if($request['delete'] === 'delete'){
+            $this->destroy($todo);
+            return redirect('/projects/' . $projid);
+        }
 
         request()->validate([
             'title' => 'required | min:3',
@@ -115,6 +130,6 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
     }
 }
