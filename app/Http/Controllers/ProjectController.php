@@ -199,17 +199,10 @@ class ProjectController extends Controller
                 }
             }
         }
-
-
-
-
         //dd($shareId->name);
         //$me->projects()->detach();
 
-
         $project->update(request(['title','description','deadline','must','visible']));
-
-
 
         return redirect('/projects/' . $project->id);
 

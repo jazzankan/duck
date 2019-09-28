@@ -42,6 +42,7 @@ const app = new Vue({
     methods: {
         getDetail: function (event,taskdet) {
             this.detail = taskdet;
+            this.detail = this.detail.replace("&#13;","<br>");
             console.log(taskdet);
             return this.detail;
         }

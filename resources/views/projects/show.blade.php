@@ -13,7 +13,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>@{{ detail }}</p>
+                    <p v-html="detail">@{{ detail }}</p>
                 </div>
             </div>
         </div>
@@ -52,6 +52,20 @@
                                 <li class="list-group-item"><a class="todolink" href="/todos/{{ $todo->id }}/edit">{{ $todo->title }}</a><span class="todoline"><span class="deadline"> Deadline: <b>{{ $todo->deadline }}</b>&nbsp;&nbsp;</span><span class="priority"><b>{{ $todo->priority }}</b></span>&nbsp;&nbsp<span class="assigned"><b>{{$todo->assigned}}</b></span>&nbsp;&nbsp<span><button type='button' class='btn btn-link' data-toggle='modal' data-target='#detailsModal' @click="getDetail($event, '{{ $todo->details }}')"><span v-if="'{{ $todo->details }}'">Detaljer</span></button></span></span></li>
                             @endif
                             @endforeach
+                        <ul class="list-group striped-list todotop">
+                            <li class="list-group-item"><h5>Pågående</h5></li>
+                            @foreach ($belongingtodos as $todo)
+                                @if($todo->status === 'o')
+                                    <li class="list-group-item"><a class="todolink" href="/todos/{{ $todo->id }}/edit">{{ $todo->title }}</a><span class="todoline"><span class="deadline"> Deadline: <b>{{ $todo->deadline }}</b>&nbsp;&nbsp;</span><span class="priority"><b>{{ $todo->priority }}</b></span>&nbsp;&nbsp<span class="assigned"><b>{{$todo->assigned}}</b></span>&nbsp;&nbsp<span><button type='button' class='btn btn-link' data-toggle='modal' data-target='#detailsModal' @click="getDetail($event, '{{ $todo->details }}')"><span v-if="'{{ $todo->details }}'">Detaljer</span></button></span></span></li>
+                                @endif
+                            @endforeach
+                            <ul class="list-group striped-list todotop">
+                                <li class="list-group-item"><h5>Avklarat</h5></li>
+                                @foreach ($belongingtodos as $todo)
+                                    @if($todo->status === 'd')
+                                        <li class="list-group-item"><a class="todolink" href="/todos/{{ $todo->id }}/edit">{{ $todo->title }}</a><span class="todoline"><span class="deadline"> Deadline: <b>{{ $todo->deadline }}</b>&nbsp;&nbsp;</span><span class="priority"><b>{{ $todo->priority }}</b></span>&nbsp;&nbsp<span class="assigned"><b>{{$todo->assigned}}</b></span>&nbsp;&nbsp<span><button type='button' class='btn btn-link' data-toggle='modal' data-target='#detailsModal' @click="getDetail($event, '{{ $todo->details }}')"><span v-if="'{{ $todo->details }}'">Detaljer</span></button></span></span></li>
+                                    @endif
+                                @endforeach
                      @endif
                     </ul>
                 </div>

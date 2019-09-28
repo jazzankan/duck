@@ -90,7 +90,21 @@ class TodoController extends Controller
 
     public function update(Request $request, Todo $todo)
     {
-        //
+        $projid =  $request['projid'];
+
+        request()->validate([
+            'title' => 'required | min:3',
+            'details' => 'nullable | min:5',
+            'deadline' => 'nullable|date',
+            'status' => 'required',
+            'priority' => 'required',
+            'assigned' => 'nullable',
+        ]);
+        $detailstring = $request['details'];
+        $request['details'] = str_replace("\r\n", '&#13;', $detailstring);
+
+        $todo->update(request(['title','details','deadline','status','priority','assigned']));
+        return redirect('/projects/' . $projid);
     }
 
     /**

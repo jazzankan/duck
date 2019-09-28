@@ -10679,12 +10679,22 @@ ul.sharing {
   float: right;
 }
 
-ul.striped-list > li:nth-of-type(odd) {
+ul.striped-list > li:nth-of-type(even) {
   background-color: #e9e9f9;
 }
 
 .btn-link {
   padding: 0px;
+}
+
+.todostatus {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: white;
+}
+
+.todotop {
+  margin-top: 20px;
 }
 
 .navbar-laravel {
