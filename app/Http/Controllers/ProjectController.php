@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NewProject;
 use App\Project;
 use App\User;
 use App\Todo;
@@ -60,6 +61,7 @@ class ProjectController extends Controller
     {
         $request['visible'] = 'y';
         $request['deadline'] = $request['date'];
+        $getSharingUsers = null;
 
         $attributes = request()->validate([
 
@@ -77,16 +79,26 @@ class ProjectController extends Controller
 
         $project->users()->attach($user_id);
 
-        $getSharingUsers = User::whereIn('name',$request['selshare'])->get();
+        if($request['selshare'] !== null) {
+            $getSharingUsers = User::whereIn('name', $request['selshare'])->get();
 
-        //Avstår tills vidare från funktion för att återta delning.
+            //Avstår tills vidare från funktion för att återta delning.
 
-        foreach($getSharingUsers as $g){
-            if(!$g->projects->contains($project->id)){
-                $g->projects()->attach($project->id);
+            foreach ($getSharingUsers as $g) {
+                if (!$g->projects->contains($project->id)) {
+                    $g->projects()->attach($project->id);
+                }
+            }
+
+            //Notification::send($getSharingUsers, new NewProject($project));
+        }
+        //Notification::send( '78094bb8ce-c4bfc7@inbox.mailtrap.io', new NewProject($project));
+        $users = User::all();
+        foreach ($users as $user) {
+            if($user['id'] == 1) {
+                $user->notify(new NewProject($project));
             }
         }
-
         return redirect('/projects');
     }
 

@@ -15,7 +15,9 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
+
+Route:: get('/upload', 'UploadController@index');
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -24,3 +26,5 @@ Route::resources(['/projects' => 'ProjectController']);
 Route::get('/todos/create/{projectid}', 'TodoController@create')->name('newtask');
 
 Route::resources(['/todos' => 'TodoController']);
+
+
