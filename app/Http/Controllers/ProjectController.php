@@ -88,15 +88,9 @@ class ProjectController extends Controller
                 if (!$g->projects->contains($project->id)) {
                     $g->projects()->attach($project->id);
                 }
-            }
-
-            //Notification::send($getSharingUsers, new NewProject($project));
-        }
-        //Notification::send( '78094bb8ce-c4bfc7@inbox.mailtrap.io', new NewProject($project));
-        $users = User::all();
-        foreach ($users as $user) {
-            if($user['id'] == 1) {
-                $user->notify(new NewProject($project));
+                if($g->id !== $user_id){
+                    $g->notify(new NewProject());
+                }
             }
         }
         return redirect('/projects');

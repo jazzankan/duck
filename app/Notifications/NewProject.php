@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Project;
+use App\User;
 
 class NewProject extends Notification
 {
@@ -18,10 +19,12 @@ class NewProject extends Notification
      * @return void
      */
     public $project;
+    public $myname;
 
     public function __construct()
     {
         $this->project = Project::latest()->first();
+        $this->myname = auth()->user()->name;
 
     }
 
@@ -45,9 +48,9 @@ class NewProject extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Projektet "' .  $this->project->title . '"  har skapats av ' . $notifiable->name)
-                    ->line($notifiable->name . ' vill dela ett projekt med dig!')
-                     ->line('Hoppas du vill medverka!')
+                    ->subject('Projektet "' .  $this->project->title . '"  har skapats av ' . $this->myname)
+                    ->line($this->myname . ' vill dela ett projekt med dig!')
+                    ->line('Hoppas du vill medverka!')
                     ->action('Till projektet', url('https://ank.webbsallad.se/projects/' . $this->project->id));
 
     }
