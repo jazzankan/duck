@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\NewProject;
+use App\Notifications\ChangedProject;
 use App\Project;
 use App\User;
 use App\Todo;
@@ -192,6 +193,7 @@ class ProjectController extends Controller
 
         $allUsers = User::all();
         $me = auth()->user();
+        $user_id = auth()->id();
 
         if($request['selshare']) {
             $getSharingUsers = User::whereIn('name', $request['selshare'])->get();
@@ -202,6 +204,9 @@ class ProjectController extends Controller
             foreach ($getSharingUsers as $g) {
                 if (!$g->projects->contains($project->id)) {
                     $g->projects()->attach($project->id);
+                }
+                if($g->id !== $user_id){
+                    $g->notify(new ChangedProject());
                 }
             }
         }

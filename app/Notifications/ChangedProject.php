@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use App\Project;
 use App\User;
 
-class NewProject extends Notification
+class ChangedProject extends Notification
 {
     use Queueable;
 
@@ -23,7 +23,7 @@ class NewProject extends Notification
 
     public function __construct()
     {
-        $this->project = Project::latest()->first();
+        $this->project = Project::latest('updated_at')->first();
         $this->myname = auth()->user()->name;
 
     }
@@ -48,11 +48,10 @@ class NewProject extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from('anders@webbsallad.se', 'Ankhemmet')
-                    ->subject('Projektet "' .  $this->project->title . '"  har skapats av ' . $this->myname)
-                    ->line($this->myname . ' vill dela ett projekt med dig!')
-                    ->line('Hoppas du vill medverka!')
-                    ->action('Till projektet', url('https://ank.webbsallad.se/projects/' . $this->project->id));
+            ->from('anders@webbsallad.se', 'Ankhemmet')
+            ->subject('Projektet "' .  $this->project->title . '"  har ändrats av ' . $this->myname)
+            ->line('Du kanske ska ta en titt?')
+            ->action('Till projektet', url('https://ank.webbsallad.se/projects/' . $this->project->id));
 
     }
 
