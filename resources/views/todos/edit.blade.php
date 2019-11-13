@@ -42,11 +42,23 @@
                 <label for="title">Ska utföras av:</label>
                 <input type="text" class="form-control" value="{{ $todo->assigned }}" name="assigned"/>
             </div>
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="delete" name="delete" value="delete">
-                <label class="custom-control-label" for="delete">Ta bort arbetsuppgiften helt!</label>
+            <div class="delete">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="delete" name="delete" value="delete">
+                    <label class="custom-control-label" for="delete">Ta bort arbetsuppgiften helt!</label>
+                </div>
             </div>
-            <input type="hidden" name="projid" value="{{ $project->id }}">
+            @if ($shared)
+                <div class="mail">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="smail" name="smail" value="smail" checked="checked">
+                            <label class="custom-control-label" for="smail">Skicka mail till dem  du delar projektet med.</label>
+                        </div>
+                    </div>
+            </div>
+            @endif
+            <input type="hidden" name="project_id" value="{{ $project->id }}">
             <button type="submit" class="btn btn-primary btop">Uppdatera</button>
         </form>
     </div>

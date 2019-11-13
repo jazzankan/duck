@@ -205,8 +205,10 @@ class ProjectController extends Controller
                 if (!$g->projects->contains($project->id)) {
                     $g->projects()->attach($project->id);
                 }
-                if($g->id !== $user_id){
-                    $g->notify(new ChangedProject());
+                if($request['sendmail']) {
+                    if ($g->id !== $user_id) {
+                        $g->notify(new ChangedProject());
+                    }
                 }
             }
         }

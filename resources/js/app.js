@@ -24,8 +24,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 //Vue.component('todo-detail',require('./components/TodoComponent.vue').default);
 Vue.component(require('./components/DatepickerComponent.vue').default);
 
-
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -37,7 +35,8 @@ const app = new Vue({
     data: {
         time1: document.getElementById("date") ? document.getElementById("date").value : '',
         lang: '',
-        detail: ''
+        detail: '',
+        selshare : false
     },
     methods: {
         getDetail: function (event,taskdet) {
@@ -45,7 +44,14 @@ const app = new Vue({
             this.detail = this.detail.replace("&#13;","<br>");
             console.log(taskdet);
             return this.detail;
+        },
+        getSelshare : function() {
+            if (document.getElementsByName("selshare[]")[0].value) {
+                this.selshare = true;
+            }
+            return this.selshare;
         }
     }
 });
+
 

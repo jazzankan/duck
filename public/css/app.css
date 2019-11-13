@@ -10701,6 +10701,10 @@ ul.striped-list > li:nth-of-type(even) {
   margin-top: 20px;
 }
 
+.delete {
+  margin-bottom: 20px;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

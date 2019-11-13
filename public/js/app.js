@@ -49137,7 +49137,8 @@ var app = new Vue({
   data: {
     time1: document.getElementById("date") ? document.getElementById("date").value : '',
     lang: '',
-    detail: ''
+    detail: '',
+    selshare: false
   },
   methods: {
     getDetail: function getDetail(event, taskdet) {
@@ -49145,6 +49146,13 @@ var app = new Vue({
       this.detail = this.detail.replace("&#13;", "<br>");
       console.log(taskdet);
       return this.detail;
+    },
+    getSelshare: function getSelshare() {
+      if (document.getElementsByName("selshare[]")[0].value) {
+        this.selshare = true;
+      }
+
+      return this.selshare;
     }
   }
 });

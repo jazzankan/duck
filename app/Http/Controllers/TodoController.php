@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Todo;
 use Illuminate\Http\Request;
 use App\Project;
+use App\User;
+use App\Notifications\ChangedProject;
 
 class TodoController extends Controller
 {
@@ -60,6 +62,19 @@ class TodoController extends Controller
             'project_id' => 'required'
         ]);
         Todo::create($attributes);
+        $myself = auth()->id();
+        $new = true;
+        $fixed = false;
+        $thisprojid = $request['project_id'];
+        $mailusers = USER::whereHas('projects' , function($query) use ($thisprojid){
+         $query->where('project_id', '=',$thisprojid);
+        })->get();
+
+        foreach ($mailusers as $mu) {
+            if($mu->id !== $myself){
+                $mu->notify(new ChangedProject($new, $fixed));
+            }
+        }
 
         return redirect('/projects/' . $request['project_id']);
     }
@@ -84,8 +99,11 @@ class TodoController extends Controller
     public function edit(Todo $todo)
     {
         $project = Project::where('id', $todo['project_id'])->first();
+        //To be able to mail only when the projet is shared
+        $shared = $project->users->contains($project['id']);
 
-        return view('todos.edit')->with('todo',$todo)->with('project',$project);
+
+        return view('todos.edit')->with('todo',$todo)->with('project',$project)->with('shared',$shared);
     }
 
     /**
@@ -98,14 +116,15 @@ class TodoController extends Controller
 
     public function update(Request $request, Todo $todo)
     {
-        //$this->authorize('update',$todo);
-
-        $projid =  $request['projid'];
-
+        $thisprojid = $request['project_id'];
+        $request['deadline'] = $request['date'];
         if($request['delete'] === 'delete'){
             $this->destroy($todo);
-            return redirect('/projects/' . $projid);
+            return redirect('/projects/' . $thisprojid);
         }
+        $myself = auth()->id();
+        $new = false;
+        $fixed = true;
 
         request()->validate([
             'title' => 'required | min:3',
@@ -119,7 +138,20 @@ class TodoController extends Controller
         $request['details'] = str_replace("\r\n", '&#13;', $detailstring);
 
         $todo->update(request(['title','details','deadline','status','priority','assigned']));
-        return redirect('/projects/' . $projid);
+
+        $mailusers = USER::whereHas('projects' , function($query) use ($thisprojid){
+            $query->where('project_id', '=',$thisprojid);
+        })->get();
+
+        if($request['smail']) {
+        foreach ($mailusers as $mu) {
+            if ($mu->id !== $myself) {
+                $mu->notify(new ChangedProject($new, $fixed));
+            }
+        }
+    }
+
+        return redirect('/projects/' . $thisprojid);
     }
 
     /**

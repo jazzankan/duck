@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Beskrivning:</label>
-                <textarea class="form-control" name="description">{{ $project->description }}</textarea>
+                <textarea class="form-control" name="description" id="description">{!! $project->description !!}</textarea>
             </div>
             <div class="form-group">
                 <input type="hidden" name="date" id="date"  value ="{{ ($project->deadline != null) ? $project->deadline : '' }}" />
@@ -54,7 +54,15 @@
                     <label class="custom-control-label" for="delete">Ta bort projektet for gott. All tillhörande data tas bort!</label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Skicka</button>
+            <div class="mail" v-if="getSelshare()">
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="sendmail" name="sendmail" value="sendmail" checked="checked">
+                        <label class="custom-control-label" for="sendmail">Skicka mail till dem  du delar projektet med.</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Spara</button>
         </form>
     </div>
     <div>
@@ -70,4 +78,13 @@
             @endif
             </p>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    <script>
+        function ckreplace() {
+            CKEDITOR.replace('description');
+        }
+        window.onload=ckreplace;
+    </script>
 @endsection

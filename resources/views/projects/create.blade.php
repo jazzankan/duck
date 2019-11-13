@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label for="description">Beskrivning:</label>
-                <textarea class="form-control" name="description">{{ old('description')}}</textarea>
+                <textarea class="form-control" id="description" name="description">{!! old('description') !!}</textarea>
             </div>
             <div class="form-group">
                 <input type="hidden" name="date" id="date" value ="{{ old('deadline') != null ? old('deadline') : ''}}"/>
@@ -54,4 +54,13 @@
     @endif
     </p>
     </div>
+@endsection
+@section('scripts')
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+    <script>
+        function ckreplace() {
+            CKEDITOR.replace('description');
+        }
+        window.onload=ckreplace;
+    </script>
 @endsection
