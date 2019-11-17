@@ -17,7 +17,11 @@ Route::get('/welcome', function () {
 
 Auth::routes(['register' => false]);
 
-Route:: get('/upload', 'UploadController@index');
+Route:: get('/upload', function() {
+    return view('upload');
+});
+
+Route:: post('/uploadfile', 'UploadController@index');
 
 Route::get('/', 'HomeController@index')->name('home');
 

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="card">
-                <div class="card-header">Upload File Example</div>
+                <div class="card-header">Ladda upp fil</div>
 
                 <div class="card-body">
                     @if ($message = Session::get('success'))
@@ -35,9 +35,9 @@
                         @csrf
                         <div class="form-group">
                             <input type="file" class="form-control-file" name="fileToUpload" id="exampleInputFile" aria-describedby="fileHelp">
-                            <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
+                            <small id="fileHelp" class="form-text text-muted">Ladda upp Word- Excel- och PDF-filer. Eller bild (.jpg .png .gif)</small>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Skicka</button>
                     </form>
                 </div>
             </div>
