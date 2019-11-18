@@ -25,7 +25,15 @@
         <p><span class="font-weight-bold">Beskrivning:</span><br>
         {!! $project->description !!}</p>
         <p><span class="font-weight-bold">Deadline:</span> {{ $project->deadline }}</p>
-        <p><span class="font-weight-bold">Tillhörande filer:</span>.....</p>
+        @if(count($belongingfiles) > 0)
+        <ul class="list-group-horizontal nomargin">
+                <li class="list-inline-item font-weight-bold nomargin">Tillhörande filer: </li>
+            @foreach($belongingfiles as $f)
+                <li class="list-inline-item">{{ $f->filename }}</li>
+            @endforeach
+        </ul>
+        @endif
+        </p>
         @if(count($sharing) > 0)
         <p>
         <ul class="sharing">

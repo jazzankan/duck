@@ -7,6 +7,7 @@ use App\Notifications\ChangedProject;
 use App\Project;
 use App\User;
 use App\Todo;
+use App\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -110,6 +111,7 @@ class ProjectController extends Controller
         $myname = auth()->user()->name;
         $sharing = User::Shared($myname, $project);
 
+        $belongingfiles = File::whereIn('projectid',[$project->id])->get();
         $belongingtodos = Todo::whereIn('project_id', [$project->id])->orderBy('deadline', 'ASC')->get();
 
         $detlink = false;
@@ -136,7 +138,7 @@ class ProjectController extends Controller
         });
 
 
-        return view('projects.show')->with('project',$project)->with('sharing',$sharing)->with('belongingtodos',$belongingtodos);
+        return view('projects.show')->with('project',$project)->with('sharing',$sharing)->with('belongingtodos',$belongingtodos)->with('belongingfiles',$belongingfiles);
     }
 
     /**
