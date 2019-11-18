@@ -17,8 +17,8 @@ Route::get('/welcome', function () {
 
 Auth::routes(['register' => false]);
 
-Route:: get('/upload', function() {
-    return view('upload');
+Route:: get('/upload/{projectid}', function($projectid) {
+    return view('upload')->with('projectid', $projectid);
 });
 
 Route:: post('/uploadfile', 'UploadController@index');

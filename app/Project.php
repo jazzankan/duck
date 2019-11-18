@@ -17,4 +17,9 @@ class Project extends Model
     {
         return $this->hasMany('App\Todo');
     }
+
+    public function files()
+    {
+        return $this->hasMany('App\File');
+    }
 }

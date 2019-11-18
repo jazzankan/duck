@@ -35,6 +35,7 @@
                         @csrf
                         <div class="form-group">
                             <input type="file" class="form-control-file" name="fileToUpload" id="exampleInputFile" aria-describedby="fileHelp">
+                            <input type="hidden" name="projectid" value="{{ $projectid }}">
                             <small id="fileHelp" class="form-text text-muted">Ladda upp Word- Excel- och PDF-filer. Eller bild (.jpg .png .gif)</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Skicka</button>
