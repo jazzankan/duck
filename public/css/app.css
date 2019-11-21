@@ -10710,6 +10710,10 @@ ul.striped-list > li:nth-of-type(even) {
   padding-left: 0px;
 }
 
+.redalert {
+  color: red;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

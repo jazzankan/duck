@@ -29,7 +29,7 @@
         <ul class="list-group-horizontal nomargin">
                 <li class="list-inline-item font-weight-bold nomargin">Tillhörande filer: </li>
             @foreach($belongingfiles as $f)
-                <li class="list-inline-item">{{ $f->filename }}</li>
+                <li class="list-inline-item"><a href="https://ank.webbsallad.se/storage/files/{{ $f->filename }}" target="_blank">{{ $f->filename }}</a></li>
             @endforeach
         </ul>
         @endif

@@ -14,7 +14,7 @@ class UploadController extends Controller
 
         $fileName = request()->fileToUpload->getClientOriginalName();
 
-        $path = $request->fileToUpload->storeAs('upload',$fileName);
+        $path = $request->fileToUpload->storeAs('files',$fileName);
 
         if($path){
             $file = new File;
@@ -22,9 +22,6 @@ class UploadController extends Controller
             $file->projectid = $request->projectid;
             $file->save();
         }
-
-        //$path = $request->file('fileToUpload')->store('upload');
-
         return redirect('/projects/' . $request->projectid);
     }
 }
