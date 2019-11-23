@@ -25,13 +25,12 @@ class ProjectController extends Controller
 
     public function index()
     {
-        //$projectlist = Project::all();
+        $today = date('Y-m-d');
         $projectlist = auth()->user()->projects->sortByDesc('must');
         $visibleproj = $projectlist->filter(function ($item){
         return $item->visible === 'y';
     });
-
-        return view('projects.list')->with('visibleproj', $visibleproj);
+        return view('projects.list')->with('visibleproj', $visibleproj)->with('today', $today);
     }
 
     /**
@@ -107,7 +106,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $this->authorize('view', $project);
-
+        $today = date('Y-m-d');
         $myname = auth()->user()->name;
         $sharing = User::Shared($myname, $project);
 
@@ -138,7 +137,7 @@ class ProjectController extends Controller
         });
 
 
-        return view('projects.show')->with('project',$project)->with('sharing',$sharing)->with('belongingtodos',$belongingtodos)->with('belongingfiles',$belongingfiles);
+        return view('projects.show')->with('project',$project)->with('sharing',$sharing)->with('belongingtodos',$belongingtodos)->with('belongingfiles',$belongingfiles)->with('today',$today);
     }
 
     /**

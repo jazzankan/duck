@@ -7,7 +7,7 @@
             <p><a href="/projects/create" class="btn btn-primary btn-sm">Nytt projekt</a></p>
         <ul class="list-group striped-list">
             @foreach ($visibleproj as $project)
-                <li class="list-group-item"><h4><a href="/projects/{{ $project->id }}">{{ $project->title }}</a></h4> @if($project['deadline']) Deadline: <span class="redalert">{{ $project->deadline }}</span>@endif</li>
+                <li class="list-group-item"><h4><a href="/projects/{{ $project->id }}">{{ $project->title }}</a></h4> @if($project['deadline']) Deadline: <span @if($project['deadline'] <= $today)class="redalert"@endif>{{ $project->deadline }}</span>@endif</li>
             @endforeach
         </ul>
         @else
