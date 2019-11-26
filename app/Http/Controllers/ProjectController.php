@@ -26,10 +26,25 @@ class ProjectController extends Controller
     public function index()
     {
         $today = date('Y-m-d');
+        $late = false;
         $projectlist = auth()->user()->projects->sortByDesc('must');
         $visibleproj = $projectlist->filter(function ($item){
         return $item->visible === 'y';
     });
+        $visibleproj->each(function ($item, $key) {
+            $this->late = false;
+            $belongingtodo = Todo::whereIn('project_id',[$item->id])->get();
+               if($belongingtodo){
+                   $belongingtodo->each(function ($todoitem, $key){
+                    if($todoitem['deadline'] < date('Y-m-d') && $todoitem['status'] != 'd' ) {
+                       $this->late = true;
+                            }
+                        });
+                    }
+               if($this->late){
+                   $item['late'] = 'y';
+               }
+        });
         return view('projects.list')->with('visibleproj', $visibleproj)->with('today', $today);
     }
 
