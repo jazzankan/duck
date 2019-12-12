@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="container">
-        <p><a href="/projects" class="btn btn-primary btn-sm">Tillbaka till projektlistan</a> <a href="/projects/{{ $project->id }}/edit" class="btn btn-primary btn-sm">Redigera projektet</a> <a href="/upload/{{ $project->id }}" class="btn btn-primary btn-sm">Ladda upp fil till projektet</a></p>
+        <p><a href="/projects" class="btn btn-primary btn-sm">Projektlistan</a> <a href="/projects/{{ $project->id }}/edit" class="btn btn-primary btn-sm">Redigera projektet</a> <a href="/upload/{{ $project->id }}" class="btn btn-primary btn-sm">Ladda upp fil</a></p>
         <h1>{{ $project->title }}</h1>
         <hr>
         <p><span class="font-weight-bold">Beskrivning:</span><br>
@@ -33,16 +33,13 @@
             @endforeach
         </ul>
         @endif
-        </p>
         @if(count($sharing) > 0)
-        <p>
         <ul class="sharing">
             <li class="list-inline-item font-weight-bold">Projektet delas med: </li>
             @foreach($sharing as $s)
                     <li class="list-inline-item">{{ $s }}</li>
                     @endforeach
             </ul>
-        </p>
         @endif
         <hr>
             <div class="todos">
@@ -79,6 +76,7 @@
                                 @endforeach
                             </ul>
                      @endif
+                </div>
             </div>
     </div>
 @endsection
