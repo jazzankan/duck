@@ -31,6 +31,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Project');
 
     }
+    public function memories()
+    {
+        return $this->hasMany('App\Memory');
+    }
 
     public function scopeShared($query, $myname, $project)
     {

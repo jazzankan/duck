@@ -31,4 +31,6 @@ Route::get('/todos/create/{projectid}', 'TodoController@create')->name('newtask'
 
 Route::resources(['/todos' => 'TodoController']);
 
+Route::resources(['/memories' => 'MemoryController']);
+
 
