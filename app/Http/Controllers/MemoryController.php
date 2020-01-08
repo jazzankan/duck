@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class MemoryController extends Controller
 {
+    public function __construct(){
+
+        $this->middleware('auth');  //->only(['store','update']) eller ->except....
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,8 @@ class MemoryController extends Controller
      */
     public function index()
     {
-        return "Ja, du kom rätt";
+        $memories = auth()->user()->memories;
+        return view('memories.list')->with('memories',$memories);
     }
 
     /**
