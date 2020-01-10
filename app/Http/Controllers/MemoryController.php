@@ -29,7 +29,7 @@ class MemoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('memories.create');
     }
 
     /**
