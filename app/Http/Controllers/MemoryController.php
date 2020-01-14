@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Memory;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class MemoryController extends Controller
@@ -29,7 +30,8 @@ class MemoryController extends Controller
      */
     public function create()
     {
-        return view('memories.create');
+        $tags = auth()->user()->tags;
+        return view('memories.create')->with('tags', $tags);
     }
 
     /**
@@ -40,8 +42,17 @@ class MemoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'title' => 'required | min:3',
+        ]);
+
+        $memory = Memory::create($attributes);
+        $user_id = auth()->id();
+
+        $memory->users()->attach($user_id);
+        return redirect('/memories');
     }
+
 
     /**
      * Display the specified resource.

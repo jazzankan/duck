@@ -36,6 +36,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Memory');
     }
 
+    public function tags()
+    {
+        return $this->hasMany('App\Tag');
+    }
+
     public function scopeShared($query, $myname, $project)
     {
         $sharing = array();

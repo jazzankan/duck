@@ -21,29 +21,23 @@
                 <label for="source">Länk:</label>
                 <input type="text" class="form-control" value="{{ old('link') }}" name="link"/>
             </div>
+            <div class="form-group">
+                Tags:<br>
+                <select multiple name="tags[]">
+                    @foreach($tags as $t)
+                        <option value ="{{ $t['id'] }}">{{ $t['name'] }}</option>
+                    @endforeach
+                </select><br>
+                Skapa och använd ny tag:<br>
+                <input type="text" class="form-control" value="{{ old('newtag') }}" name="newtag"/>
+
+            </div>
             <div>Viktighetsgrad:</div>
             <div class="radio">
-                <label><input type="radio" name="importance" value="y" {{ (old('importance') === '1') ? '' : 'checked' }}> 1 </label>
-                <label> <input type="radio" name="importance" {{ (old('importance') === '2')  || (old('importance') === null )? 'checked' : '' }} value="n"> 2 </label>
-                <label><input type="radio" name="importance" {{ (old('importance') === '3') ? 'checked' : '' }} value="n"> 3 </label>
+                <label><input type="radio" name="importance" value="y" {{ (old('importance') === '1') ? '' : 'checked' }}> 1 &nbsp; </label>
+                <label> <input type="radio" name="importance" {{ (old('importance') === '2')  || (old('importance') === null )? 'checked' : '' }} value="n"> 2 &nbsp; </label>
+                <label><input type="radio" name="importance" {{ (old('importance') === '3') ? 'checked' : '' }} value="n"> 3 &nbsp;</label>
             </div>
-            <!--<div class="form-group">
-                <input type="hidden" name="date" id="date" value ="{{ old('deadline') != null ? old('deadline') : ''}}"/>
-                <label for="deadline">Deadline om det finns någon:</label>
-                <template>
-                    <div>
-                        <date-picker v-model="time1" :lang="lang" :first-day-of-week="1"></date-picker>
-                    </div>
-                </template>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="importance" value="y" {{ (old('importance') === 'n') ? '' : 'checked' }}>Plikt</label>
-            </div>
-            <div class="radio">
-                <label><input type="radio" name="importance" {{ (old('importance') === 'n') ? 'checked' : '' }} value="n">Hobby eller nöje</label>
-            </div>
-            <div>
-            </div>-->
             <button type="submit" class="btn btn-primary">Skapa</button>
         </form>
     </div>
