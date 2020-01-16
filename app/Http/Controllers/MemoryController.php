@@ -42,14 +42,19 @@ class MemoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request['user_id'] = auth()->id();
+
         $attributes = request()->validate([
             'title' => 'required | min:3',
+            'description' => 'nullable | min:5',
+            'source' => 'nullable',
+            'link' => 'nullable',
+            'importance' => 'required',
+            'user_id' => 'required'
         ]);
 
         $memory = Memory::create($attributes);
-        $user_id = auth()->id();
 
-        $memory->users()->attach($user_id);
         return redirect('/memories');
     }
 

@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" value="{{ old('source') }}" name="source"/>
             </div>
             <div class="form-group">
-                <label for="source">Länk:</label>
+                <label for="link">Länk:</label>
                 <input type="text" class="form-control" value="{{ old('link') }}" name="link"/>
             </div>
             <div class="form-group">
@@ -34,9 +34,9 @@
             </div>
             <div>Viktighetsgrad:</div>
             <div class="radio">
-                <label><input type="radio" name="importance" value="y" {{ (old('importance') === '1') ? '' : 'checked' }}> 1 &nbsp; </label>
-                <label> <input type="radio" name="importance" {{ (old('importance') === '2')  || (old('importance') === null )? 'checked' : '' }} value="n"> 2 &nbsp; </label>
-                <label><input type="radio" name="importance" {{ (old('importance') === '3') ? 'checked' : '' }} value="n"> 3 &nbsp;</label>
+                <label><input type="radio" name="importance" value="1" {{ (old('importance') === '1') ? 'checked' : '' }}> 1 &nbsp; </label>
+                <label> <input type="radio" name="importance" value="2" {{ (old('importance') === '2' || old('importance') === null) ? 'checked' : '' }}> 2 &nbsp; </label>
+                <label><input type="radio" name="importance" value="3" {{ (old('importance') === '3') ? 'checked' : '' }}> 3 &nbsp;</label>
             </div>
             <button type="submit" class="btn btn-primary">Skapa</button>
         </form>
