@@ -67,7 +67,8 @@ class MemoryController extends Controller
      */
     public function show(Memory $memory)
     {
-        //
+        $this->authorize('view', $memory);
+        return view('memories.show')->with('memory',$memory);
     }
 
     /**

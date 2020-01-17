@@ -9,6 +9,7 @@
                 <div class="card-body">
                     <p><a href="https://phpmyadmin.app" target="_blank">phpmyadmin</a> med hemligt lösenord</p>
                     <p><a href="/projects">Projekt</a></p>
+                    <p><a href="/memories">Minnesgrejer</a></p>
                     <hr>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
