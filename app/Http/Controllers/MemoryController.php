@@ -79,7 +79,8 @@ class MemoryController extends Controller
      */
     public function edit(Memory $memory)
     {
-        //
+        $tags = auth()->user()->tags;
+        return view('memories.edit')->with('memory', $memory)->with('tags', $tags);
     }
 
     /**
@@ -89,9 +90,9 @@ class MemoryController extends Controller
      * @param  \App\Memory  $memory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Memory $memory)
+    public function update(Request $request,Memory $memory)
     {
-        //
+        dd("Hej!");
     }
 
     /**

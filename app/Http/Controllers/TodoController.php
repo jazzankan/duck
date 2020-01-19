@@ -99,7 +99,7 @@ class TodoController extends Controller
     public function edit(Todo $todo)
     {
         $project = Project::where('id', $todo['project_id'])->first();
-        //To be able to mail only when the projet is shared
+        //To be able to mail only when the project is shared
         $shared = $project->users->contains($project['id']);
 
 
