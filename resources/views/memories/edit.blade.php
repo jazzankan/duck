@@ -33,9 +33,9 @@
             </div>
             <div>Viktighetsgrad:</div>
             <div class="radio">
-                <label><input type="radio" name="importance" value="1"  {{ ($memory->importance === "1") ? 'checked' : '' }}> 1 &nbsp;</label>
-                <label> <input type="radio" name="importance" value="2" {{ ($memory->importance === "2") ? 'checked' : '' }}> 2  </label>
-                <label><input type="radio" name="importance" value="3"  {{ ($memory->importance === "3") ? 'checked' : '' }}> 3 &nbsp;</label>
+                <label><input type="radio" name="importance" value="1"  {{ ($memory->importance === "1") ? 'checked' : '' }}> 1 </label>
+                <label> <input type="radio" name="importance" value="2" {{ ($memory->importance === "2") ? 'checked' : '' }}> 2 </label>
+                <label><input type="radio" name="importance" value="3"  {{ ($memory->importance === "3") ? 'checked' : '' }}> 3 </label>
             </div>
             <button type="submit" class="btn btn-primary">Skapa</button>
         </form>
