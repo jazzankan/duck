@@ -11,7 +11,7 @@
         <p><strong>Källa: </strong> {{ $memory-> source  }}</p>
         @endif
         @if($memory->link != null)
-        <p><strong>Länk: </strong> {{ $memory-> link  }} </p>
+        <p><strong>Länk: </strong> <a href="{{ $memory-> link  }}" target="_blank">{{ $memory-> link  }}</a></p>
         @endif
         <p><strong>Viktighet: </strong> {{ $memory-> importance  }}</p>
         <p><strong>Skapat: </strong> {{ $memory-> created_at  }}</p>

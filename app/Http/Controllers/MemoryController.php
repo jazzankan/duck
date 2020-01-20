@@ -92,7 +92,18 @@ class MemoryController extends Controller
      */
     public function update(Request $request,Memory $memory)
     {
-        dd("Hej!");
+        $request['user_id'] = auth()->id();
+
+        $attributes = request()->validate([
+            'title' => 'required | min:3',
+            'description' => 'nullable | min:5',
+            'source' => 'nullable',
+            'link' => 'nullable',
+            'importance' => 'required',
+            'user_id' => 'required'
+        ]);
+        $memory->update(request(['title','description','source','link','importance','user_id']));
+        return redirect('/memories/' . $memory->id);
     }
 
     /**
