@@ -67,8 +67,10 @@ class MemoryController extends Controller
      */
     public function show(Memory $memory)
     {
+
         $this->authorize('view', $memory);
-        return view('memories.show')->with('memory',$memory);
+        $tags = Tag::whereIn('id', $memory['selshare'])->get();
+        return view('memories.show')->with('memory',$memory)->with('tags', $tags);
     }
 
     /**

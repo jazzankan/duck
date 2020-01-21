@@ -18,7 +18,7 @@
         @if($memory->updated_at != null && $memory->updated_at != $memory->created_at)
         <p><strong>Senast ändrat: </strong> {{ $memory-> updated_at  }}</p>
         @endif
-        <p><strong>Taggar: </strong>...</p>
+        <p><strong>Taggar: </strong>@foreach($tags as $tag) {{ $tag->name }}&nbsp;@endforeach</p>
 
     </div>
 @endsection
