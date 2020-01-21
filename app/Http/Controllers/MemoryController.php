@@ -69,7 +69,7 @@ class MemoryController extends Controller
     {
 
         $this->authorize('view', $memory);
-        $tags = Tag::whereIn('id', $memory['selshare'])->get();
+        $tags = $memory->tags()->orderBy('name')->get();
         return view('memories.show')->with('memory',$memory)->with('tags', $tags);
     }
 

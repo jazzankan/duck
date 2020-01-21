@@ -8,7 +8,7 @@ class Tag extends Model
 {
     protected $guarded = [];
 
-    public function projects()
+    public function memories()
     {
         return $this->belongsToMany('App\Memory');
     }
