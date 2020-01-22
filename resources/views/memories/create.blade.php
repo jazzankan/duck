@@ -14,7 +14,7 @@
                 <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
             </div>
             <div class="form-group">
-                <label for="source">Källa (om inte länk):</label>
+                <label for="source">Källa:</label>
                 <input type="text" class="form-control" value="{{ old('source') }}" name="source"/>
             </div>
             <div class="form-group">

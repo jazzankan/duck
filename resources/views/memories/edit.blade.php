@@ -13,7 +13,7 @@
                 <textarea class="form-control" id="description" name="description">{{ $memory->description }}</textarea>
             </div>
             <div class="form-group">
-                <label for="source">Källa (om inte länk):</label>
+                <label for="source">Källa:</label>
                 <input type="text" class="form-control" value="{{ $memory->source }}" name="source"/>
             </div>
             <div class="form-group">
@@ -24,7 +24,11 @@
                 Tags:<br>
                 <select multiple name="tags[]">
                     @foreach($tags as $t)
-                        <option value ="{{ $t['id'] }}">{{ $t['name'] }}</option>
+                        @if($seltags->contains('id', $t['id']))
+                            <option value ="{{ $t['id'] }}" selected>{{ $t['name'] }}</option>
+                        @else
+                            <option value ="{{ $t['id'] }}">{{ $t['name'] }}</option>
+                        @endif
                     @endforeach
                 </select><br>
                 Skapa och använd ny tag:<br>

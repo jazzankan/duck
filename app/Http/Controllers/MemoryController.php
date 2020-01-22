@@ -82,7 +82,8 @@ class MemoryController extends Controller
     public function edit(Memory $memory)
     {
         $tags = auth()->user()->tags;
-        return view('memories.edit')->with('memory', $memory)->with('tags', $tags);
+        $seltags = $memory->tags()->orderBy('name')->get();
+        return view('memories.edit')->with('memory', $memory)->with('tags', $tags)->with('seltags',$seltags);
     }
 
     /**
