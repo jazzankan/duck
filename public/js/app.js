@@ -49138,7 +49138,8 @@ var app = new Vue({
     time1: document.getElementById("date") ? document.getElementById("date").value : '',
     lang: '',
     detail: '',
-    selshare: false
+    selshare: false,
+    newtaginput: false
   },
   methods: {
     getDetail: function getDetail(event, taskdet) {

@@ -28,8 +28,15 @@
                         <option value ="{{ $t['id'] }}">{{ $t['name'] }}</option>
                     @endforeach
                 </select><br>
-                Skapa och använd ny tag:<br>
-                <input type="text" class="form-control" value="{{ old('newtag') }}" name="newtag"/>
+                <div class="form-group row">
+                    <div class="col-xs-2">
+                        Skapa och använd <a href="#" v-on:click="newtaginput = true">nya taggar:</a><br>
+                        <div v-show="newtaginput">
+                        <input type="text" class="form-control" value="{{ old('newtag1') }}" name="newtag1"/><br>
+                        <input type="text" class="form-control" value="{{ old('newtag2') }}" name="newtag2"/>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div>Viktighetsgrad:</div>
