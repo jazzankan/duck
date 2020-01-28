@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Memory;
 use App\Tag;
 use Illuminate\Http\Request;
+use DB;
+use Carbon\Carbon;
 
 class MemoryController extends Controller
 {
@@ -19,7 +21,7 @@ class MemoryController extends Controller
      */
     public function index()
     {
-        $memories = auth()->user()->memories;
+        $memories = auth()->user()->memories->sortByDesc('created_at');
         return view('memories.list')->with('memories',$memories);
     }
 
@@ -61,6 +63,23 @@ class MemoryController extends Controller
                     $memory->tags()->attach($tag);
                 }
         }
+        if($request['newtag1'] !== null) {
+            $newtag1 = $request['newtag1'];
+            $userid = auth()->id();
+            $newtag1id = DB::table('tags')->insertGetId(
+                ['name' => $newtag1, 'user_id' => $userid,'created_at' => Carbon::now(),'updated_at' => Carbon::now(),]
+            );
+            $memory->tags()->attach($newtag1id);
+        }
+        if($request['newtag2'] !== null) {
+            $newtag2 = $request['newtag2'];
+            $userid = auth()->id();
+            $newtag2id = DB::table('tags')->insertGetId(
+                ['name' => $newtag2, 'user_id' => $userid,'created_at' => Carbon::now(),'updated_at' => Carbon::now(),]
+            );
+            $memory->tags()->attach($newtag2id);
+        }
+
 
         return redirect('/memories');
     }
