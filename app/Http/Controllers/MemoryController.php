@@ -131,7 +131,31 @@ class MemoryController extends Controller
             'importance' => 'required',
             'user_id' => 'required'
         ]);
+
         $memory->update(request(['title','description','source','link','importance','user_id']));
+        $selectedtags = $request['tags'];
+        $integerIDs = array_map('intval', $selectedtags);
+        $memory->tags()->sync($integerIDs);
+
+        if($request['newtag1'] !== null) {
+            $newtag1 = $request['newtag1'];
+            $userid = auth()->id();
+            $newtag1id = DB::table('tags')->insertGetId(
+                ['name' => $newtag1, 'user_id' => $userid,'created_at' => Carbon::now(),'updated_at' => Carbon::now(),]
+            );
+            $memory->tags()->attach($newtag1id);
+        }
+        if($request['newtag2'] !== null) {
+            $newtag2 = $request['newtag2'];
+            $userid = auth()->id();
+            $newtag2id = DB::table('tags')->insertGetId(
+                ['name' => $newtag2, 'user_id' => $userid,'created_at' => Carbon::now(),'updated_at' => Carbon::now(),]
+            );
+            $memory->tags()->attach($newtag2id);
+        }
+
+
+
         return redirect('/memories/' . $memory->id);
     }
 
