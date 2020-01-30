@@ -37,7 +37,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div>Viktighetsgrad:</div>
             <div class="radio">

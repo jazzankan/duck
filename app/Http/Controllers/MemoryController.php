@@ -134,8 +134,13 @@ class MemoryController extends Controller
 
         $memory->update(request(['title','description','source','link','importance','user_id']));
         $selectedtags = $request['tags'];
-        $integerIDs = array_map('intval', $selectedtags);
-        $memory->tags()->sync($integerIDs);
+        if($selectedtags) {
+            $integerIDs = array_map('intval', $selectedtags);
+            $memory->tags()->sync($integerIDs);
+        }
+        else{
+            $memory->tags()->sync([]);
+        }
 
         if($request['newtag1'] !== null) {
             $newtag1 = $request['newtag1'];
@@ -154,7 +159,15 @@ class MemoryController extends Controller
             $memory->tags()->attach($newtag2id);
         }
 
+        //$memories = auth()->user()->memories;
+        $userid = auth()->user()['id'];
+        $tags = Tag::all()->where('user_id',$userid);
 
+        foreach($tags as $tag){
+            if(!$memory->tags()->where('tag_id', $tag['id'])->get()){
+            $tag->delete();
+            }
+        }
 
         return redirect('/memories/' . $memory->id);
     }
