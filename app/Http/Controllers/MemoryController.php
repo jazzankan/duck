@@ -158,16 +158,15 @@ class MemoryController extends Controller
             );
             $memory->tags()->attach($newtag2id);
         }
-
-        //$memories = auth()->user()->memories;
+        //Rensa bort taggar som inte används till något minne
         $userid = auth()->user()['id'];
         $tags = Tag::all()->where('user_id',$userid);
-
-        foreach($tags as $tag){
-            if(!$memory->tags()->where('tag_id', $tag['id'])->get()){
-            $tag->delete();
+        $tags->each(function($item, $key) {
+            $query = DB::table('memory_tag')->where('tag_id', $item['id'])->exists();;
+            if(!$query){
+                $item->delete();
             }
-        }
+        });
 
         return redirect('/memories/' . $memory->id);
     }

@@ -124,7 +124,6 @@ class ProjectController extends Controller
         $today = date('Y-m-d');
         $myname = auth()->user()->name;
         $sharing = User::Shared($myname, $project);
-
         $belongingfiles = File::whereIn('projectid',[$project->id])->get();
         $belongingtodos = Todo::whereIn('project_id', [$project->id])->orderBy('deadline', 'ASC')->get();
 
@@ -149,6 +148,7 @@ class ProjectController extends Controller
             if($todo['priority'] == "h") {
                 $todo['priority'] = "Prio: Hög ";
             }
+            $todo['details'] = str_replace("'","\\'",$todo); //Annars blank sida om ' förekommer
         });
 
 
