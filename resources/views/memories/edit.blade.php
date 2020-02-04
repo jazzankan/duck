@@ -47,6 +47,12 @@
                 <label> <input type="radio" name="importance" value="2" {{ ($memory->importance === 2  ) ? 'checked' : '' }}> 2 </label>
                 <label><input type="radio" name="importance" value="3"  {{ ($memory->importance === 3) ? 'checked' : '' }}> 3 </label>
             </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="delete" name="delete" value="delete">
+                    <label class="custom-control-label" for="delete">Ta bort projektet for gott!</label>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">Uppdatera</button>
         </form>
     </div>

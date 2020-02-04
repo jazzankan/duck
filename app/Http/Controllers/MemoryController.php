@@ -121,6 +121,11 @@ class MemoryController extends Controller
      */
     public function update(Request $request,Memory $memory)
     {
+        if($request['delete'] === 'delete'){
+            $this->destroy($memory);
+            return redirect('/memories');
+        }
+
         $request['user_id'] = auth()->id();
 
         $attributes = request()->validate([
@@ -158,7 +163,7 @@ class MemoryController extends Controller
             );
             $memory->tags()->attach($newtag2id);
         }
-        //Rensa bort taggar som inte används till något minne
+        //Rensa bort taggar som inte används till något minne. Finns också vid destroy.
         $userid = auth()->user()['id'];
         $tags = Tag::all()->where('user_id',$userid);
         $tags->each(function($item, $key) {
@@ -179,6 +184,18 @@ class MemoryController extends Controller
      */
     public function destroy(Memory $memory)
     {
-        //
+        $memory->tags()->detach();
+
+        //Körs också vid update. Borde finnas på bara ett ställe. Vilket?
+       $userid = auth()->user()['id'];
+        $tags = Tag::all()->where('user_id',$userid);
+        $tags->each(function($item, $key) {
+            $query = DB::table('memory_tag')->where('tag_id', $item['id'])->exists();;
+            if(!$query){
+                $item->delete();
+            }
+        });
+
+        $memory->delete();
     }
 }

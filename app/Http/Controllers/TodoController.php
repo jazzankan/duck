@@ -67,7 +67,7 @@ class TodoController extends Controller
         $fixed = false;
         $thisprojid = $request['project_id'];
         $mailusers = USER::whereHas('projects' , function($query) use ($thisprojid){
-         $query->where('project_id', '=',$thisprojid);
+         $query->where('project_user.project_id', '=',$thisprojid);
         })->get();
 
         foreach ($mailusers as $mu) {
