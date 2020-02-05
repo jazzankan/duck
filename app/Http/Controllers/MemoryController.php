@@ -21,7 +21,9 @@ class MemoryController extends Controller
      */
     public function index()
     {
-        $memories = auth()->user()->memories->sortByDesc('created_at');
+        $userid = auth()->id();
+        $memories = DB::table('memories')->where('user_id',$userid)->orderBy('updated_at', 'desc')->paginate(10);
+
         return view('memories.list')->with('memories',$memories);
     }
 
@@ -107,7 +109,9 @@ class MemoryController extends Controller
      */
     public function edit(Memory $memory)
     {
-        $tags = auth()->user()->tags;
+        $this->authorize('update',$memory);
+
+        $tags = auth()->user()->tags()->orderBy('name')->get();
         $seltags = $memory->tags()->orderBy('name')->get();
         return view('memories.edit')->with('memory', $memory)->with('tags', $tags)->with('seltags',$seltags);
     }
