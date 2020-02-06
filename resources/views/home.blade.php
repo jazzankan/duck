@@ -7,7 +7,6 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>
                 <div class="card-body">
-                    <p><a href="https://phpmyadmin.app" target="_blank">phpmyadmin</a> med hemligt lösenord</p>
                     <p><a href="/projects">Projekt</a></p>
                     <p><a href="/memories">Minnesgrejer</a></p>
                     <hr>

@@ -6,10 +6,13 @@ use App\Memory;
 use App\Tag;
 use Illuminate\Http\Request;
 use DB;
+use App\Traits\DeleteTagTrait;
 use Carbon\Carbon;
 
 class MemoryController extends Controller
 {
+    use DeleteTagTrait;
+
     public function __construct(){
 
         $this->middleware('auth');  //->only(['store','update']) eller ->except....
@@ -167,15 +170,8 @@ class MemoryController extends Controller
             );
             $memory->tags()->attach($newtag2id);
         }
-        //Rensa bort taggar som inte används till något minne. Finns också vid destroy.
-        $userid = auth()->user()['id'];
-        $tags = Tag::all()->where('user_id',$userid);
-        $tags->each(function($item, $key) {
-            $query = DB::table('memory_tag')->where('tag_id', $item['id'])->exists();;
-            if(!$query){
-                $item->delete();
-            }
-        });
+
+        $this->deleteUnusedTags();  //Metod i Traits
 
         return redirect('/memories/' . $memory->id);
     }
@@ -189,17 +185,7 @@ class MemoryController extends Controller
     public function destroy(Memory $memory)
     {
         $memory->tags()->detach();
-
-        //Körs också vid update. Borde finnas på bara ett ställe. Vilket?
-       $userid = auth()->user()['id'];
-        $tags = Tag::all()->where('user_id',$userid);
-        $tags->each(function($item, $key) {
-            $query = DB::table('memory_tag')->where('tag_id', $item['id'])->exists();;
-            if(!$query){
-                $item->delete();
-            }
-        });
-
+        $this->deleteUnusedTags();
         $memory->delete();
     }
 }

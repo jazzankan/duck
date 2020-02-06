@@ -50,7 +50,7 @@
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="delete" name="delete" value="delete">
-                    <label class="custom-control-label" for="delete">Ta bort projektet for gott!</label>
+                    <label class="custom-control-label" for="delete">Ta bort minnet for gott!</label>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Uppdatera</button>
