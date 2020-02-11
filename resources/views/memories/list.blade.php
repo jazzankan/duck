@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         @if(count($memories) > 0)
-            <h1>Mina minnesvärda saker</h1>
+            <h1>Minnen</h1>
             <p><a href="/memories/create" class="btn btn-primary btn-sm">Nytt minne</a></p>
             <ul class="list-group striped-list">
                 @foreach ($memories as $memory)

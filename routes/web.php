@@ -20,8 +20,13 @@ Auth::routes(['register' => false]);
 Route:: get('/upload/{projectid}', function($projectid) {
     return view('upload')->with('projectid', $projectid);
 });
+Route:: get('/memupload/{memoryid}', function($memoryid) {
+    return view('memupload')->with('memoryid', $memoryid);
+});
 
 Route:: post('/uploadfile', 'UploadController@index');
+
+Route:: post('/uploadmemory', 'UploadController@memories');
 
 Route::get('/', 'HomeController@index')->name('home');
 

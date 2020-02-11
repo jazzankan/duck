@@ -211,12 +211,12 @@ class ProjectController extends Controller
         $me = auth()->user();
         $user_id = auth()->id();
 
+        $project->update(request(['title','description','deadline','must','visible']));
+
         if($request['selshare']) {
             $getSharingUsers = User::whereIn('name', $request['selshare'])->get();
 
             //Avstår tills vidare från funktion för att återta delning.
-
-
             foreach ($getSharingUsers as $g) {
                 if (!$g->projects->contains($project->id)) {
                     $g->projects()->attach($project->id);
@@ -228,10 +228,6 @@ class ProjectController extends Controller
                 }
             }
         }
-        //dd($shareId->name);
-        //$me->projects()->detach();
-
-        $project->update(request(['title','description','deadline','must','visible']));
 
         return redirect('/projects/' . $project->id);
 

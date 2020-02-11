@@ -24,9 +24,11 @@
             <div class="form-group">
                 Tags:<br>
                 <select multiple name="tags[]">
-                    @foreach($tags as $t)
-                        <option value ="{{ $t['id'] }}">{{ $t['name'] }}</option>
-                    @endforeach
+                    @if($tags)
+                        @foreach($tags as $t)
+                            <option value ="{{ $t['id'] }}">{{ $t['name'] }}</option>
+                        @endforeach
+                    @endif
                 </select><br>
                 <div class="form-group row">
                     <div class="col-xs-2">
