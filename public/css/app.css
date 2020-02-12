@@ -10714,6 +10714,16 @@ ul.striped-list > li:nth-of-type(even) {
   color: red;
 }
 
+.newmem {
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.newmembox {
+  margin-right: 5px;
+  margin-bottom: 15px;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
