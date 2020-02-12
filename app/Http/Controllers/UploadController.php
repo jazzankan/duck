@@ -42,7 +42,7 @@ class UploadController extends Controller
             $file->memoryid = $request->memoryid;
             $file->save();
         }
-        return redirect('/memories/' . $request->projectid);
+        return redirect('/memories/'. $request->memoryid);
     }
 }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Memory;
 use App\Tag;
 use Illuminate\Http\Request;
+use App\Memfile;
 use DB;
 use App\Traits\DeleteTagTrait;
 use Carbon\Carbon;
@@ -101,7 +102,8 @@ class MemoryController extends Controller
 
         $this->authorize('view', $memory);
         $tags = $memory->tags()->orderBy('name')->get();
-        return view('memories.show')->with('memory',$memory)->with('tags', $tags);
+        $belongingfiles = Memfile::whereIn('memoryid',[$memory->id])->get();
+        return view('memories.show')->with('memory',$memory)->with('tags', $tags)->with('belongingfiles', $belongingfiles);
     }
 
     /**
