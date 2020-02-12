@@ -49139,7 +49139,8 @@ var app = new Vue({
     lang: '',
     detail: '',
     selshare: false,
-    newtaginput: false
+    newtaginput: false,
+    memfilter: false
   },
   methods: {
     getDetail: function getDetail(event, taskdet) {

@@ -37,7 +37,8 @@ const app = new Vue({
         lang: '',
         detail: '',
         selshare : false,
-        newtaginput : false
+        newtaginput : false,
+        memfilter : false
     },
     methods: {
         getDetail: function (event,taskdet) {

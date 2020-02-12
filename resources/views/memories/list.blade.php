@@ -7,8 +7,11 @@
                 @csrf
             <a href="/memories/create" class="btn btn-primary btn-sm newmem">Nytt minne</a>
                 <input type="text" class="form-control newmembox" value="{{ old('search') }}" name="search"/> <button type="submit" class="btn btn-primary newmem">Sök</button>
-                <a href="#" v-on:click="filter = true"><b>Filtrera</b></a>
+                <a href="#" v-on:click="memfilter = !memfilter"><b>Filtrera</b></a>
             </form>
+            <div v-show="memfilter">
+                Filtrering här!
+            </div>
             <ul class="list-group striped-list">
                 @foreach ($memories as $memory)
                     <li class="list-group-item"><h4><a href="/memories/{{ $memory->id }}">{{ $memory->title }}</a></h4></li>

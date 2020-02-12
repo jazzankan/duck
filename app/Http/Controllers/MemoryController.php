@@ -25,8 +25,12 @@ class MemoryController extends Controller
      */
     public function index()
     {
+        $searchterm = "taggar";
         $userid = auth()->id();
-        $memories = DB::table('memories')->where('user_id',$userid)->orderBy('updated_at', 'desc')->paginate(10);
+        //$memories = DB::table('memories')->where('user_id',$userid)->orderBy('updated_at', 'desc')->paginate(10);
+        if($searchterm){
+            $memories = DB::table('memories')->where('user_id',$userid)->where('description','LIKE','%'.$searchterm.'%')->orWhere('title','LIKE','%'.$searchterm.'%')->orWhere(DB::table('memories_tags')->where('name','LIKE','%'.$searchterm.'%'))->orderBy('updated_at', 'desc')->paginate(10);
+        }
 
         return view('memories.list')->with('memories',$memories);
     }
