@@ -5,10 +5,10 @@
         <p><a href="/memories" class="btn btn-primary btn-sm">Minneslistan</a> <a href="/memories/{{ $memory->id }}/edit" class="btn btn-primary btn-sm">Redigera minnet</a> <a href="/memupload/{{ $memory->id }}" class="btn btn-primary btn-sm">Ladda upp fil</a>
         <h2>{{ $memory->title  }}</h2>
         @if($memory->description != null)
-        <p><strong>Beskrivning: </strong> {{ $memory-> description  }}</p>
+        <p><strong>Beskrivning: </strong> {!! nl2br(e($memory->description)) !!}</p>
         @endif
         @if($memory->source != null)
-        <p><strong>Källa: </strong> {{ $memory-> source  }}</p>
+        <p><strong>Källa: </strong> {{ $memory->source  }}</p>
         @endif
         @if($memory->link != null)
         <p><strong>Länk: </strong> <a href="{{ $memory-> link  }}" target="_blank">{{ $memory-> link  }}</a></p>

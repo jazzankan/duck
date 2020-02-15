@@ -10,7 +10,7 @@
                 <a href="#" v-on:click="memfilter = !memfilter"><b>Filtrera</b></a>
             </form>
             <div v-show="memfilter">
-                Filtrering här!
+                Filtrering inte implementerad ännu!
             </div>
             <ul class="list-group striped-list">
                 @foreach ($memories as $memory)

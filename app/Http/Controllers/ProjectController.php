@@ -148,7 +148,7 @@ class ProjectController extends Controller
             if($todo['priority'] == "h") {
                 $todo['priority'] = "Prio: Hög ";
             }
-            $todo['details'] = str_replace("'","\\'",$todo); //Annars blank sida om ' förekommer
+            $todo['details'] = str_replace("'","\\'",$todo['details']); //Annars blank sida om ' förekommer
         });
 
 
