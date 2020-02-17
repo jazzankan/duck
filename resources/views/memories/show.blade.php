@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', ' - ett minne')
 @section('content')
     <div class="container">
         <p><a href="/memories" class="btn btn-primary btn-sm">Minneslistan</a> <a href="/memories/{{ $memory->id }}/edit" class="btn btn-primary btn-sm">Redigera minnet</a> <a href="/memupload/{{ $memory->id }}" class="btn btn-primary btn-sm">Ladda upp fil</a>

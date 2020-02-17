@@ -3,18 +3,29 @@
     <div class="container">
         @if(count($memories) > 0)
             <h1>Minnen</h1>
-            <form class="form-inline" method="post" action="{{ route('memories.store') }}">
+            <form class="form-inline" method="post" action="{{ route('memories.index') }}">
                 @csrf
             <a href="/memories/create" class="btn btn-primary btn-sm newmem">Nytt minne</a>
-                <input type="text" class="form-control newmembox" value="{{ old('search') }}" name="search"/> <button type="submit" class="btn btn-primary newmem">Sök</button>
+                <input type="text" class="form-control newmembox" value="{{ $searchterm }}" name="search"/> <button type="submit" class="btn btn-primary newmem">Sök</button>
                 <a href="#" v-on:click="memfilter = !memfilter"><b>Filtrera</b></a>
             </form>
             <div v-show="memfilter">
                 Filtrering inte implementerad ännu!
             </div>
+            <div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
             <ul class="list-group striped-list">
                 @foreach ($memories as $memory)
-                    <li class="list-group-item"><h4><a href="/memories/{{ $memory->id }}">{{ $memory->title }}</a></h4></li>
+                    <li class="list-group-item"><h4><a href="/memories/{{ $memory->id }}" target="_blank">{{ $memory->title }}</a></h4></li>
                 @endforeach
             </ul>
             <p>

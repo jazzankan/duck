@@ -23,20 +23,25 @@ class MemoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $searchterm = "aggar";
+        request()->validate([
+            'search' => 'min:3|max:20'
+        ]);
+        $searchterm = $request['search'];
         $userid = auth()->id();
         $memories = DB::table('memories')->where('user_id',$userid)->orderBy('updated_at', 'desc')->paginate(10);
         if($searchterm){
-            $memories = DB::table('memories')->where('user_id',$userid)
-                ->where('description','LIKE','%'.$searchterm.'%')
-                ->orWhere('title','LIKE','%'.$searchterm.'%')
-                //->orWhere('tag.name','LIKE','%'.$searchterm.'%')->paginate(10);
-                ->orWhereHas('tags.name','LIKE','%'.$searchterm.'%');
+            $memories = Memory::
+            whereHas('tags',function ($q) use ($searchterm){
+                    $q->where('name','LIKE','%'.$searchterm.'%');
+            })
+                ->orWhere('memories.description','LIKE','%'.$searchterm.'%')
+                ->orWhere('memories.title','LIKE','%'.$searchterm.'%')
+                ->paginate(10);
         }
 
-        return view('memories.list')->with('memories',$memories);
+        return view('memories.list')->with('memories',$memories)->with('searchterm',$searchterm);
     }
 
     /**

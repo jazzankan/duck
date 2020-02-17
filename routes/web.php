@@ -38,4 +38,6 @@ Route::resources(['/todos' => 'TodoController']);
 
 Route::resources(['/memories' => 'MemoryController']);
 
+Route::post('/memories', 'MemoryController@index');
+
 
