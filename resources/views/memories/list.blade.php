@@ -3,15 +3,22 @@
     <div class="container">
         @if(count($memories) > 0)
             <h1>Minnen</h1>
-            <form class="form-inline" method="post" action="{{ route('memories.index') }}">
+            <form method="post" action="{{ route('memories.index') }}">
                 @csrf
             <a href="/memories/create" class="btn btn-primary btn-sm newmem">Nytt minne</a>
-                <input type="text" class="form-control newmembox" value="{{ $searchterm }}" name="search"/> <button type="submit" class="btn btn-primary newmem">Sök</button>
+                <input type="text" class="newmembox" value="{{ $searchterm }}" name="search"/> <button type="submit" class="btn btn-primary newmem">Sök</button>
                 <a href="#" v-on:click="memfilter = !memfilter"><b>Filtrera</b></a>
-            </form>
             <div v-show="memfilter">
-                Filtrering inte implementerad ännu!
+                <p>Filtrering inte implementerad ännu! Det blir på tag,datumintervall,viktighet.</p>
+                <p><label for="importance">Viktighet:</label>
+                    <select id="importance" name="importance">
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select></p>
             </div>
+            </form>
             <div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -31,6 +38,9 @@
             <p>
             {{$memories->render()}}
             </p>
+            @elseif($searchterm)
+            <h2>Inga träffar!</h2>
+            <p><a href="/memories" class="btn btn-primary btn-sm">Minneslistan</a></p>
         @else
             <h2>Det finns inget...</h2>
             <p><a href="/memories/create" class="btn btn-primary btn-sm">Nytt minne</a></p>

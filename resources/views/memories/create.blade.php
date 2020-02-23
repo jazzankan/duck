@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Skapa ett minne</h1>
-        <form method="post" action="{{ route('memories.store') }}">
+        <form method="post" action="/memories/create">
             @csrf
             <div class="form-group">
                 <label for="title">Titel:</label>
