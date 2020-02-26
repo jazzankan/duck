@@ -31,26 +31,22 @@ class MemoryController extends Controller
             $memories = DB::table('memories')->where('user_id', $userid)->orderBy('updated_at', 'desc')->paginate(10);
         }
         else{
-            $importance = $request['importance'];
             request()->validate([
                 'search' => 'max:20'
             ]);
             $memories = Memory::
-            whereHas('tags',function ($q) use ($searchterm){
-                    $q->where('name','LIKE','%'.$searchterm.'%');
-            })
-                ->orWhere('memories.description','LIKE','%'.$searchterm.'%')
-                ->orWhere('memories.title','LIKE','%'.$searchterm.'%')
-                ->where(function ($query) use ($request) {
-                    $query->where('memories.importance','=',$request['importance']);
+                where(function ($q) use ($searchterm) {
+                $q->whereHas('tags', function ($query) use ($searchterm) {
+                    $query->where('name', 'LIKE', '%'.$searchterm.'%');
                     })
+                ->orWhere('memories.title', 'LIKE', '%'.$searchterm.'%')
+                ->orWhere('memories.description', 'LIKE', '%'.$searchterm.'%');
+            })
+                ->where(function ($q) use ($request) {
+                    $q->where('memories.importance', '=', $request['importance']);
+                })
                 ->paginate(10);
         }
-        if($request['importance']){
-           $impmemories = Memory::where('importance',$request['importance']);
-        }
-
-
 
         return view('memories.list')->with('memories',$memories)->with('searchterm',$searchterm);
     }
