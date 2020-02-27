@@ -26,11 +26,19 @@ class MemoryController extends Controller
     public function index(Request $request)
     {
         $searchterm = $request['search'];
+        $userid = auth()->id();
+        $tags = Tag::where('user_id',$userid)->orderBy('name')->get();
+        if($request['importance'] === null){
+            $request['importance'] = '%';
+        }
+        if($request['tag'] === ""){
+            $request['tag'] = '%';
+        }
         if(empty($_POST)) {
-            $userid = auth()->id();
             $memories = DB::table('memories')->where('user_id', $userid)->orderBy('updated_at', 'desc')->paginate(10);
         }
         else{
+            //dd($request['importance']);
             request()->validate([
                 'search' => 'max:20'
             ]);
@@ -43,12 +51,21 @@ class MemoryController extends Controller
                 ->orWhere('memories.description', 'LIKE', '%'.$searchterm.'%');
             })
                 ->where(function ($q) use ($request) {
-                    $q->where('memories.importance', '=', $request['importance']);
+                    $q->where('memories.importance', 'LIKE', $request['importance']);
                 })
+                ->where(function ($q) use ($searchterm,$request) {
+                    $q->whereHas('tags', function ($query) use ($request) {
+                        $query->where('tags.id', 'LIKE', $request['tag']);
+                        });
+                })
+                ->where(function ($q) use ($request,$userid) {
+                    $q->where('user_id', $userid);
+                })
+                ->orderBy('updated_at', 'desc')
                 ->paginate(10);
         }
 
-        return view('memories.list')->with('memories',$memories)->with('searchterm',$searchterm);
+        return view('memories.list')->with('memories',$memories)->with('searchterm',$searchterm)->with('tags',$tags);
     }
 
     /**

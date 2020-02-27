@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container" xmlns="http://www.w3.org/1999/html">
         @if(count($memories) > 0)
             <h1>Minnen</h1>
             <form method="post" action="{{ route('memories.index') }}">
@@ -10,6 +10,16 @@
                 <a href="#" v-on:click="memfilter = !memfilter"><b>Filtrera</b></a>
             <div v-show="memfilter">
                 <p>Filtrering inte implementerad ännu! Det blir på tag,datumintervall,viktighet.</p>
+                <p><label for="tag">Tagg:</label>
+                    @if($tags)
+                        <select id="tag" name="tag">
+                            <option value=""></option>
+                            @foreach($tags as $t)
+                                <option value ="{{ $t['id'] }}">{{ $t['name'] }}</option>
+                            @endforeach
+                    @endif
+                        </select>
+                </p>
                 <p><label for="importance">Viktighet:</label>
                     <select id="importance" name="importance">
                         <option value=""></option>
@@ -32,7 +42,7 @@
             </div>
             <ul class="list-group striped-list">
                 @foreach ($memories as $memory)
-                    <li class="list-group-item"><h4><a href="/memories/{{ $memory->id }}" target="_blank">{{ $memory->title }}</a></h4></li>
+                    <li class="list-group-item"><h4><a href="/memories/{{ $memory->id }}">{{ $memory->title }}</a></h4></li>
                 @endforeach
             </ul>
             <p>
