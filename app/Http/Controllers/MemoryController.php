@@ -25,22 +25,32 @@ class MemoryController extends Controller
      */
     public function index(Request $request)
     {
-        $searchterm = $request['search'];
         $userid = auth()->id();
+        $searchterm = $request['search'];
         $tags = Tag::where('user_id',$userid)->orderBy('name')->get();
-        if($request['importance'] === null){
-            $request['importance'] = '%';
-        }
-        if($request['tag'] === ""){
-            $request['tag'] = '%';
-        }
+
         if(empty($_POST)) {
             $memories = DB::table('memories')->where('user_id', $userid)->orderBy('updated_at', 'desc')->paginate(10);
         }
         else{
-            //dd($request['importance']);
+            if($request['importance'] === null){
+                $request['importance'] = '%';
+            }
+            if($request['tag'] === ""){
+                $request['tag'] = '%';
+            }
+            $today = date("Y-m-d");
+            if($request['fromdate'] === null){
+                $request['fromdate'] = date("2020-01-01");
+            }
+            if($request['todate'] === null){
+                $request['todate'] = $today;
+            }
+
             request()->validate([
-                'search' => 'max:20'
+                'search' => 'max:20',
+                'tag' => 'max:20',
+                'importance' => 'max:1'
             ]);
             $memories = Memory::
                 where(function ($q) use ($searchterm) {

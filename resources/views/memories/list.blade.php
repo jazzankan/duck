@@ -9,7 +9,6 @@
                 <input type="text" class="newmembox" value="{{ $searchterm }}" name="search"/> <button type="submit" class="btn btn-primary newmem">Sök</button>
                 <a href="#" v-on:click="memfilter = !memfilter"><b>Filtrera</b></a>
             <div v-show="memfilter">
-                <p>Filtrering inte implementerad ännu! Det blir på tag,datumintervall,viktighet.</p>
                 <p><label for="tag">Tagg:</label>
                     @if($tags)
                         <select id="tag" name="tag">
@@ -27,6 +26,10 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select></p>
+                <p><label for="fromdate">Från:</label>
+                    <input type="date" value="" name="fromdate"/>
+                    <label for="todate">Till:</label>
+                    <input type="date" value="" name="todate"/></p>
             </div>
             </form>
             <div>
