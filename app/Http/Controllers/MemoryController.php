@@ -39,12 +39,12 @@ class MemoryController extends Controller
             if($request['tag'] === ""){
                 $request['tag'] = '%';
             }
-            $today = date("Y-m-d");
+            $tomorrow = date("Y-m-d", strtotime('tomorrow'));
             if($request['fromdate'] === null){
                 $request['fromdate'] = date("2020-01-01");
             }
             if($request['todate'] === null){
-                $request['todate'] = $today;
+                $request['todate'] = $tomorrow;
             }
 
             request()->validate([
@@ -62,6 +62,12 @@ class MemoryController extends Controller
             })
                 ->where(function ($q) use ($request) {
                     $q->where('memories.importance', 'LIKE', $request['importance']);
+                })
+                ->where(function ($q) use ($request) {
+                    $q->where('memories.created_at', '>=', $request['fromdate']);
+                })
+                ->where(function ($q) use ($request) {
+                    $q->where('memories.created_at', '<=', $request['todate']);
                 })
                 ->where(function ($q) use ($searchterm,$request) {
                     $q->whereHas('tags', function ($query) use ($request) {
