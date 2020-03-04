@@ -64,10 +64,10 @@ class MemoryController extends Controller
                     $q->where('memories.importance', 'LIKE', $request['importance']);
                 })
                 ->where(function ($q) use ($request) {
-                    $q->where('memories.created_at', '>=', $request['fromdate']);
+                    $q->whereDate('memories.created_at', '>=', $request['fromdate']);
                 })
                 ->where(function ($q) use ($request) {
-                    $q->where('memories.created_at', '<=', $request['todate']);
+                    $q->whereDate('memories.created_at', '<=', $request['todate']);
                 })
                 ->where(function ($q) use ($searchterm,$request) {
                     $q->whereHas('tags', function ($query) use ($request) {
