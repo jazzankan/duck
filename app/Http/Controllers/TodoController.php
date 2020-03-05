@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\User;
 use App\Notifications\ChangedProject;
+use Carbon\Carbon;
 
 class TodoController extends Controller
 {
@@ -85,9 +86,13 @@ class TodoController extends Controller
      * @param  \App\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function show(Todo $todo)
+    public function list(Todo $todo)
     {
-        //
+        $today = Carbon::now();
+
+        $undonetodos = Todo::all();
+
+        return view('todos.list')->with('undonetodos',$undonetodos)->with('today',$today);
     }
 
     /**
