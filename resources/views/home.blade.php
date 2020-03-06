@@ -8,6 +8,7 @@
                 <div class="card-header">Dashboard</div>
                 <div class="card-body">
                     <p><a href="/projects">Projekt</a></p>
+                    <p><a href="/todos">Ofärdiga arbetsuppgifter</a></p>
                     <p><a href="/memories">Minnesgrejer</a></p>
                     <hr>
                     @if (session('status'))

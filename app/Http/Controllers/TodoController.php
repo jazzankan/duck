@@ -8,6 +8,7 @@ use App\Project;
 use App\User;
 use App\Notifications\ChangedProject;
 use Carbon\Carbon;
+use DB;
 
 class TodoController extends Controller
 {
@@ -89,8 +90,16 @@ class TodoController extends Controller
     public function list(Todo $todo)
     {
         $today = Carbon::now();
+        $authuserid = auth()->id();
 
-        $undonetodos = Todo::all();
+        $undonetodos = Todo::where('status','o')->orWhere('status','n')->get();
+
+        foreach($undonetodos as $ut){
+             $userids = DB::table('project_user')->where('project_id',$ut['project_id'])->get(['user_id']);
+            if (!$userids->contains('user_id',$authuserid)){
+                $undonetodos = $undonetodos->except($ut->id);
+            }
+        }
 
         return view('todos.list')->with('undonetodos',$undonetodos)->with('today',$today);
     }
