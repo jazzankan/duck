@@ -92,7 +92,7 @@ class TodoController extends Controller
         $today = Carbon::now();
         $authuserid = auth()->id();
 
-        $undonetodos = Todo::where('status','o')->orWhere('status','n')->get();
+        $undonetodos = Todo::where('status','o')->orWhere('status','n')->orderBy('deadline')->get();
 
         foreach($undonetodos as $ut){
              $userids = DB::table('project_user')->where('project_id',$ut['project_id'])->get(['user_id']);
