@@ -99,6 +99,10 @@ class TodoController extends Controller
             if (!$userids->contains('user_id',$authuserid)){
                 $undonetodos = $undonetodos->except($ut->id);
             }
+            else{
+                $projname = Project::where('id',$ut->project_id)->value('title');
+                $ut['projname'] = $projname;
+            }
         }
 
         return view('todos.list')->with('undonetodos',$undonetodos)->with('today',$today);
