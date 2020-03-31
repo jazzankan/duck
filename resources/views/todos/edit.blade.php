@@ -13,14 +13,17 @@
                 <label><input type="radio" name="status" value="o" {{ ($todo->status === 'o') ? 'checked' : '' }}> Pågående </label>
                 <label><input type="radio" name="status" value="d" {{ ($todo->status === 'd') ? 'checked' : '' }}> Avklarad </label>
                 </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
                 <label for="title">Uppgift:</label>
                 <input type="text" class="form-control" value="{{ $todo->title }}" name="title"/>
-            </div>
+                    </div>
+                </div>
             <div class="form-group">
                 <label for="description">Detaljer:</label>
                 <textarea class="form-control" id="details" name="details">{!! $todo->details !!}</textarea>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <input type="hidden" name="date" id="date" value ="{{ ($todo->deadline != null) ? $todo->deadline : '' }}"/>
                 <label for="deadline">Deadline om det finns någon:</label>
                 <template>
@@ -28,7 +31,13 @@
                         <date-picker v-model="time1" :lang="lang" :first-day-of-week="1"></date-picker>
                     </div>
                 </template>
-            </div>
+            </div>-->
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <label for="deadline">Deadline om det finns:</label>
+                        <input type="date" class="form-control" value="{{ ($todo->deadline != null) ? $todo->deadline : '' }}" name="date">
+                    </div>
+                </div>
             <div class="radio">
                 <label><input type="radio" name="priority" value="l" {{ ($todo->priority === 'l') ? 'checked' : '' }}> Lågprioriterad</label>
             </div>
@@ -38,9 +47,11 @@
             <div class="radio">
                 <label><input type="radio" name="priority"  value="h" {{ ($todo->priority === 'h') ? 'checked' : '' }}> Högprioriterad</label>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
+                <div class="col-sm-6">
                 <label for="title">Ska utföras av:</label>
                 <input type="text" class="form-control" value="{{ $todo->assigned }}" name="assigned"/>
+                </div>
             </div>
             <div class="delete">
                 <div class="custom-control custom-checkbox">

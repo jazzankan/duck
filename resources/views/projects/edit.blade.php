@@ -5,22 +5,21 @@
         <form method="post" action="/projects/{{ $project->id  }}">
             {{ method_field('PATCH') }}
             @csrf
-            <div class="form-group">
+            <div class="form-group row">
+                <div class="col-sm-6">
                 <label for="title">Namn:</label>
                 <input type="text" class="form-control" value="{{ $project->title }}" name="title"/>
+                </div>
             </div>
             <div class="form-group">
                 <label for="description">Beskrivning:</label>
                 <textarea class="form-control" name="description" id="description">{!! $project->description !!}</textarea>
             </div>
-            <div class="form-group">
-                <input type="hidden" name="date" id="date"  value ="{{ ($project->deadline != null) ? $project->deadline : '' }}" />
-                <label for="deadline">Deadline om det finns någon:</label>
-                <template>
-                    <div>
-                        <date-picker v-model="time1" :lang="lang" :first-day-of-week="1"></date-picker>
-                    </div>
-                </template>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                <label for="deadline">Deadline om det finns:</label>
+                <input type="date" class="form-control" value="{{ ($project->deadline != null) ? $project->deadline : '' }}" name="date">
+                </div>
             </div>
             <div class="form-group">
             <div class="radio">

@@ -52,3 +52,12 @@ ul.striped-list > li:nth-of-type(even) {
     margin-right: 5px;
     margin-bottom: 15px;
 }
+.undonetask{
+    color: red;
+}
+.ongoingtask{
+    color: #d3a60c;
+}
+.finishedtask{
+    color: green;
+}

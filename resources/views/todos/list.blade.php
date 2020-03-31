@@ -12,7 +12,6 @@
             </ul>
         @else
             <h2>Du har inga ogjorda arbetsuppgifter.</h2>
-            <p><a href="/projects/create" class="btn btn-primary btn-sm">Nytt projekt</a></p>
         @endif
     </div>
 @endsection

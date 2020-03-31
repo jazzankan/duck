@@ -22,7 +22,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 //Vue.component('todo-detail',require('./components/TodoComponent.vue').default);
-Vue.component(require('./components/DatepickerComponent.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,8 +33,6 @@ Vue.component(require('./components/DatepickerComponent.vue').default);
 const app = new Vue({
     el: '#app',
     data: {
-        time1: document.getElementById("date") ? document.getElementById("date").value : '',
-        lang: '',
         detail: '',
         selshare : false,
         newtaginput : false,

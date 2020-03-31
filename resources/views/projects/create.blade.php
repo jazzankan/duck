@@ -4,23 +4,22 @@
     <div class="container">
         <h1>Skapa ett projekt</h1>
         <form method="post" action="{{ route('projects.store') }}">
-            <div class="form-group">
-                @csrf
+            @csrf
+            <div class="form-group row">
+                <div class="col-sm-6">
                 <label for="title">Namn:</label>
                 <input type="text" class="form-control" value="{{ old('title') }}" name="title"/>
+                </div>
             </div>
             <div class="form-group">
                 <label for="description">Beskrivning:</label>
                 <textarea class="form-control" id="description" name="description">{!! old('description') !!}</textarea>
             </div>
-            <div class="form-group">
-                <input type="hidden" name="date" id="date" value ="{{ old('deadline') != null ? old('deadline') : ''}}"/>
-                <label for="deadline">Deadline om det finns någon:</label>
-                <template>
-                    <div>
-                        <date-picker v-model="time1" :lang="lang" :first-day-of-week="1"></date-picker>
-                    </div>
-                </template>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <label for="deadline">Deadline om det finns:</label>
+                    <input type="date" class="form-control" value="{{ old('deadline') != null ? old('deadline') : ''}}" name="date">
+                </div>
             </div>
             <div class="radio">
                 <label><input type="radio" name="must" value="y" {{ (old('must') === 'n') ? '' : 'checked' }}>Plikt</label>

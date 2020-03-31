@@ -10724,6 +10724,18 @@ ul.striped-list > li:nth-of-type(even) {
   margin-bottom: 15px;
 }
 
+.undonetask {
+  color: red;
+}
+
+.ongoingtask {
+  color: #d3a60c;
+}
+
+.finishedtask {
+  color: green;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
