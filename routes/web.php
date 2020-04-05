@@ -14,6 +14,9 @@
 Route::get('/welcome', function () {
     return view('welcome');
 });
+Route::get('/blog', function () {
+    return view('blog');
+});
 
 Auth::routes(['register' => false]);
 
