@@ -28,6 +28,8 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ Auth::user()->name .$pageowner ?? 'Startsida' }}
                 </a>
+                    @else
+                    <h1>Kläckt från Ankhemmet</h1>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
