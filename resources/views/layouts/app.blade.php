@@ -25,10 +25,14 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 @if(isset(Auth::user()->name))
+                    @if (\Request::is('blog'))
+                        <h1>Kläckt från <a href="/">Ankhemmet</a> </h1>
+                @else
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ Auth::user()->name .$pageowner ?? 'Startsida' }}
                 </a>
-                    @else
+                    @endif
+                @else
                     <h1>Kläckt från Ankhemmet</h1>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
