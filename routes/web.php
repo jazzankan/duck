@@ -14,9 +14,7 @@
 Route::get('/welcome', function () {
     return view('welcome');
 });
-Route::get('/blog', function () {
-    return view('blog');
-});
+Route::get('/blog', 'BlogController@index');
 
 Auth::routes(['register' => false]);
 
