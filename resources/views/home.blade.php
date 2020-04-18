@@ -11,6 +11,7 @@
                     <p><a href="/todos">Ofärdiga arbetsuppgifter</a></p>
                     <p><a href="/memories">Minnesgrejer</a></p>
                     <p><a href="/blog">Publik blogg</a></p>
+                    <p><a href="/articles">Blogginlägg</a> - skapa och redigera</p>
                     <hr>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
