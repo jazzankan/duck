@@ -9,7 +9,7 @@
                 <hr>
                 <ul class="list-group striped-list">
                     @foreach ($articles as $art)
-                        <li class="list-group-item"><h4><a href="/projects/{{ $art->id }}">{{ $art->heading }}</a></h4></li>
+                        <li class="list-group-item"><h4><a href="/articles/{{ $art->id }}">{{ $art->heading }}</a></h4></li>
                     @endforeach
                 </ul>
             </div>

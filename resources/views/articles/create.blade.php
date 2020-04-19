@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h1>Skapa ett blogginlägg</h1>
-        <form method="post" action="{{ route('projects.store') }}">
+        <form method="post" action="{{ route('articles.store') }}">
             @csrf
             <div class="form-group row">
                 <div class="col-sm-6">
@@ -17,7 +17,7 @@
             </div>
             <div>
             <label for="heading">Kategori:</label>
-            <input type="text" class="form-control" value="1" name="category"/>
+            <input type="text" class="form-control" value="1" name="category_id"/>
             </div>
             <div class="radio">
                 <label><input type="radio" name="published" value="no" {{ (old('published') === 'no') ? '' : 'checked' }}> Opublicerad</label>

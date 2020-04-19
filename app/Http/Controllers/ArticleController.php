@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::where('published','yes')->orderByDesc('updated_at')->get();
+        $articles = Article::orderByDesc('updated_at')->get();
 
         return view('articles.list')->with('articles',$articles);
     }
@@ -37,7 +37,17 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+
+            'heading' => 'required | min:3',
+            'body' => 'required | min:5',
+            'published' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $project = Article::create($attributes);
+
+        return redirect('/articles');
     }
 
     /**
