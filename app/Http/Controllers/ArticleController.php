@@ -69,7 +69,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles.edit')->with('article',$article);
     }
 
     /**
@@ -81,8 +81,18 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $attributes = request()->validate([
+            'heading' => 'required | min:3',
+            'body' => 'required | min:5',
+            'published' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $article->update(request(['heading','body','published','category_id',]));
+
+        return view('blog');
     }
+
 
     /**
      * Remove the specified resource from storage.
