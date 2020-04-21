@@ -9,7 +9,13 @@
                 <hr>
                 <ul class="list-group striped-list">
                     @foreach ($articles as $art)
-                        <li class="list-group-item"><h4><a href="/articles/{{ $art->id }}/edit">{{ $art->heading }}</a></h4></li>
+                        <li class="list-group-item"><h4><a href="/articles/{{ $art->id }}/edit">{{ $art->heading }}</a></h4>
+                            Skapad: {{ $art->created_at->format('Y-m-d') }}<br>
+                            @if($art->published === "yes")
+                                <span class="published"><strong>Publicerad</strong></span>
+                            @else
+                                <span class="unpublished"><strong>Opublicerad</strong></span>
+                            @endif</li>
                     @endforeach
                 </ul>
             </div>

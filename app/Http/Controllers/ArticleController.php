@@ -90,7 +90,7 @@ class ArticleController extends Controller
 
         $article->update(request(['heading','body','published','category_id',]));
 
-        return view('blog');
+        return redirect('blog');
     }
 
 

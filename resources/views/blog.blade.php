@@ -7,7 +7,7 @@
                 @foreach($articles as $art)
                     <h2>{{$art->heading}}</h2>
                     <p>{!! $art->body !!}</p>
-                    <p>Publicerad: {{$art->updated}}</p>
+                    <p>Publicerad: {{$art->updated_at->format('Y-m-d')}}</p>
                     <hr>
                     @endforeach
             </div>

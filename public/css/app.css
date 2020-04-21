@@ -10736,6 +10736,14 @@ ul.striped-list > li:nth-of-type(even) {
   color: green;
 }
 
+.published {
+  color: green;
+}
+
+.unpublished {
+  color: red;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
