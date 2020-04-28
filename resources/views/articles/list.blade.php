@@ -18,6 +18,9 @@
                             @endif</li>
                     @endforeach
                 </ul>
+                <p>
+                    {{$articles->render()}}
+                </p>
             </div>
             <div class="col-sm-4" style="background-color:salmon">
                 <h2>Nu är vi till höger</h2>

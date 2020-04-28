@@ -45,6 +45,15 @@ const app = new Vue({
             console.log(taskdet);
             return this.detail;
         },
+        toggleActive(key) {
+                var body = document.getElementsByClassName(key)[0];
+                if(body.style.display != "none") {
+                    body.style.display = "none";
+                }
+                else{
+                    body.style.display = "block";
+                }
+            },
         getSelshare : function() {
             if (document.getElementsByName("selshare[]")[0].value) {
                 this.selshare = true;

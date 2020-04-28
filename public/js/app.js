@@ -49008,6 +49008,15 @@ var app = new Vue({
       console.log(taskdet);
       return this.detail;
     },
+    toggleActive: function toggleActive(key) {
+      var body = document.getElementsByClassName(key)[0];
+
+      if (body.style.display != "none") {
+        body.style.display = "none";
+      } else {
+        body.style.display = "block";
+      }
+    },
     getSelshare: function getSelshare() {
       if (document.getElementsByName("selshare[]")[0].value) {
         this.selshare = true;
