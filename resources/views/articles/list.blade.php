@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <h1>Blogginlägg</h1>
-                <p><a href="/articles/create" class="btn btn-primary btn-sm">Nytt inlägg</a></p>
+                <p><a href="/articles/create" class="btn btn-primary btn-sm">Nytt inlägg</a> <a href="/blog" class="btn btn-primary btn-sm">Publik blogg</a></p>
                 <hr>
                 <ul class="list-group striped-list">
                     @foreach ($articles as $art)

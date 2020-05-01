@@ -81,6 +81,11 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        if($request['delete'] === 'delete') {
+            $this->destroy($article);
+            return redirect('/articles');
+        }
+
         $attributes = request()->validate([
             'heading' => 'required | min:3',
             'body' => 'required | min:5',
@@ -90,7 +95,12 @@ class ArticleController extends Controller
 
         $article->update(request(['heading','body','published','category_id',]));
 
-        return redirect('blog');
+        if($request['published'] == "yes") {
+            return redirect('blog');
+        }
+        else{
+            return redirect('articles');
+        }
     }
 
 
@@ -102,6 +112,6 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
     }
 }

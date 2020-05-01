@@ -50,7 +50,7 @@
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="delete" name="delete" value="delete">
-                    <label class="custom-control-label" for="delete">Ta bort projektet for gott. All tillhörande data tas bort!</label>
+                    <label class="custom-control-label" for="delete">Ta bort projektet för gott. All tillhörande data tas bort!</label>
                 </div>
             </div>
             <div class="mail" v-if="getSelshare()">

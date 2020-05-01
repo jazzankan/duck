@@ -26,6 +26,12 @@
             <div class="radio">
                 <label><input type="radio" name="published" {{ ($article->published === 'yes') ? 'checked' : '' }} value="yes"> Publicerad</label>
             </div>
+            <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="delete" name="delete" value="delete">
+                    <label class="custom-control-label" for="delete">Ta bort inlägget för gott.</label>
+                </div>
+            </div>
             <div>
             </div>
             <button type="submit" class="btn btn-primary">Skicka</button>
