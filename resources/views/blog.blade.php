@@ -7,7 +7,7 @@
                 @foreach($articles as $key => $art)
                     <h2><a href="#" v-on:click="toggleActive({{ $key }})">{{$art->heading}}</a></h2>
                     <div class="{{ $key }}" style="display:none;">{!! $art->body !!}</div>
-                    <p>Kategori: {{ $art->category_id }}</p>
+                    <p>Kategori: {{ $art->catname }}</p>
                     <p>Publicerad: {{$art->updated_at->format('Y-m-d')}}</p>
                     <hr>
                     @endforeach

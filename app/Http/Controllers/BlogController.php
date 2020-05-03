@@ -13,10 +13,11 @@ class BlogController extends Controller
         $articles = Article::where('published','yes')->orderByDesc('updated_at')->paginate(6);
         $categories = Category::all();
 
-        $articles->each(function($item, $key) {
-            echo $item;
+        $articles->each(function($article, $key) {
+            $category = Category::where('id',$article->category_id)->first();
+            $article['catname'] = $category['name'];
         });
 
-        return view('blog')->with('articles',$articles)->with('categories', $categories);
+        return view('blog')->with('articles',$articles);
     }
 }
