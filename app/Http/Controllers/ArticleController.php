@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -26,7 +27,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $categories = Category::all()->sortBy('name');
+
+        return view('articles.create')->with('categories', $categories);
     }
 
     /**
@@ -46,6 +49,7 @@ class ArticleController extends Controller
         ]);
 
         $project = Article::create($attributes);
+
 
         return redirect('/articles');
     }
@@ -69,7 +73,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('articles.edit')->with('article',$article);
+        $categories = Category::all()->sortBy('name');
+
+        return view('articles.edit')->with('article',$article)->with('categories', $categories);
     }
 
     /**

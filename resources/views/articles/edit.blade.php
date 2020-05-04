@@ -16,9 +16,17 @@
                 <label for="body">Brödtext:</label>
                 <textarea class="form-control" id="body" name="body">{!! $article->body !!}</textarea>
             </div>
-            <div>
-                <label for="heading">Kategori:</label>
-                <input type="text" class="form-control" value="1" name="category_id"/>
+            <div class="form-group">
+                Kategorier:<br>
+                <select name="category_id">
+                    @foreach($categories as $c)
+                        @if($article->category_id === $c['id']))
+                            <option value ="{{ $c['id'] }}" selected>{{ $c['name'] }}</option>
+                        @else
+                            <option value ="{{ $c['id'] }}">{{ $c['name'] }}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
             <div class="radio">
                 <label><input type="radio" name="published" value="no" {{ ($article->published === 'no') ? 'checked' : '' }}> Opublicerad</label>

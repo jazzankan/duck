@@ -15,9 +15,14 @@
                 <label for="body">Brödtext:</label>
                 <textarea class="form-control" id="body" name="body">{!! old('body') !!}</textarea>
             </div>
-            <div>
-            <label for="heading">Kategori:</label>
-            <input type="text" class="form-control" value="1" name="category_id"/>
+            <div class="form-group">
+                Kategorier:<br>
+                <select name="category_id">
+                    <option value ="" selected>Välj:</option>
+                    @foreach($categories as $c)
+                        <option value ="{{ $c['id'] }}">{{ $c['name'] }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="radio">
                 <label><input type="radio" name="published" value="no" {{ (old('published') === 'no') ? '' : 'checked' }}> Opublicerad</label>
