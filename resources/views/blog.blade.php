@@ -15,8 +15,16 @@
                         {{$articles->render()}}
                     </p>
             </div>
-            <div class="col-sm-4" style="background-color:salmon">
-                <h2>Nu är vi till höger</h2>
+            <div class="col-sm-4">
+                <h2>Kategorier</h2>
+                <div>
+                    <ul class="list-group">
+                    @foreach($categories as $c)
+                        <li class="list-group-item">{{ $c->name }}</li>
+                    @endforeach
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>

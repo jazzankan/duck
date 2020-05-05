@@ -25,10 +25,10 @@
                 </select>
             </div>
             <div class="radio">
-                <label><input type="radio" name="published" value="no" {{ (old('published') === 'no') ? '' : 'checked' }}> Opublicerad</label>
+                <label><input type="radio" name="published" value="no" checked="checked"> Opublicerad</label>
             </div>
             <div class="radio">
-                <label><input type="radio" name="published" {{ (old('must') === 'yes') ? 'checked' : '' }} value="yes"> Publicerad</label>
+                <label><input type="radio" name="published" value="yes"> Publicerad</label>
             </div>
             <div>
             </div>

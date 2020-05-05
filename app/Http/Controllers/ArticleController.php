@@ -50,8 +50,12 @@ class ArticleController extends Controller
 
         $project = Article::create($attributes);
 
-
-        return redirect('/articles');
+        if($request['published'] == "yes") {
+            return redirect('blog');
+        }
+        else{
+            return redirect('articles');
+        }
     }
 
     /**

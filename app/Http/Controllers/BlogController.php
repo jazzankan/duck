@@ -18,6 +18,6 @@ class BlogController extends Controller
             $article['catname'] = $category['name'];
         });
 
-        return view('blog')->with('articles',$articles);
+        return view('blog')->with('articles',$articles)->with('categories', $categories);
     }
 }
