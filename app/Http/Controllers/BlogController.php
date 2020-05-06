@@ -8,8 +8,12 @@ use App\Category;
 
 class BlogController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if(isset($request->cid)){
+            dd($request->cid);
+        }
+
         $articles = Article::where('published','yes')->orderByDesc('updated_at')->paginate(6);
         $categories = Category::all();
 

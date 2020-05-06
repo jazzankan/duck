@@ -19,9 +19,12 @@
                 <h2>Kategorier</h2>
                 <div>
                     <ul class="list-group">
-                    @foreach($categories as $c)
-                        <li class="list-group-item">{{ $c->name }}</li>
-                    @endforeach
+                        @foreach($categories as $c)
+                            <form id="c{{ $c->id }}" action="/blog">
+                            <input type="hidden" name="cid" value="{{ $c->id }}" checked="checked">
+                            <li class="list-group-item"><a href="#" onClick="document.getElementById('c{{ $c->id}}').submit()">{{$c->name }}</li>
+                            </form>
+                        @endforeach
                     </ul>
                 </div>
 
