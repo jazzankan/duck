@@ -19,10 +19,14 @@
                 <h2>Kategorier</h2>
                 <div>
                     <ul class="list-group">
+                        <li class="list-group-item"><a href="#" onClick="document.getElementById('showall').submit()">Alla</a></li>
+                        <form id="showall" action="/blog">
+                        <input type="hidden" id="allcat" name="cid" value="allcat">
+                        </form>
                         @foreach($categories as $c)
                             <form id="c{{ $c->id }}" action="/blog">
-                            <input type="hidden" name="cid" value="{{ $c->id }}" checked="checked">
-                            <li class="list-group-item"><a href="#" onClick="document.getElementById('c{{ $c->id}}').submit()">{{$c->name }}</li>
+                            <input type="hidden" name="cid" value="{{ $c->id }}">
+                                <li class="list-group-item"><a href="#" onClick="document.getElementById('c{{ $c->id}}').submit()">{{$c->name }}</a></li>
                             </form>
                         @endforeach
                     </ul>

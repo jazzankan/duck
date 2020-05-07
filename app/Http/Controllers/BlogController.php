@@ -10,11 +10,13 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        if(isset($request->cid)){
-            dd($request->cid);
+        if(isset($request->cid) && $request->cid != "allcat"){
+            $articles = Article::where('published','yes')->where('category_id', $request->cid)->orderByDesc('updated_at')->paginate(6);
+        }
+        else {
+            $articles = Article::where('published', 'yes')->orderByDesc('updated_at')->paginate(6);
         }
 
-        $articles = Article::where('published','yes')->orderByDesc('updated_at')->paginate(6);
         $categories = Category::all();
 
         $articles->each(function($article, $key) {
