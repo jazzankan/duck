@@ -59,6 +59,13 @@ const app = new Vue({
                 this.selshare = true;
             }
             return this.selshare;
+        },
+        blogcatall : function(){
+            document.getElementById('showall').submit();
+            document.getElementById('allfat').style.fontWeight = "900";
+        },
+        blogcatcid : function(cid){
+            document.getElementById(cid).submit()
         }
     }
 });
