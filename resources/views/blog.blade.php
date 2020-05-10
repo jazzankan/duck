@@ -19,7 +19,7 @@
                 <h2>Kategorier</h2>
                 <div>
                     <ul class="list-group">
-                       @if($requestcid)<li class="list-group-item"><a href="#" v-on:click="blogcatall()"><h5 id="allfat" @if($requestcid == "allcat")style = 'color:green;font-weight:600'@endif>Alla</h5></a></li>@endif
+                       @if($requestcid)<li class="list-group-item"><a href="#" v-on:click="blogcatall()"><h5 id="allfat" @if($requestcid == "allcat")style = 'color:green;font-weight:600'@endif>Alla ({{ $allart }})</h5></a></li>@endif
                         <form id="showall" action="/blog">
                         <input type="hidden" id="allcat" name="cid" value="allcat">
                         </form>

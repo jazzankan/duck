@@ -28,7 +28,7 @@ class BlogController extends Controller
             $category = Category::where('id',$article->category_id)->first();
             $article['catname'] = $category['name'];
         });
-
-        return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid);
+        $allart = Article::where('published','yes')->count();
+        return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid)->with('allart', $allart);
     }
 }
