@@ -19,6 +19,10 @@ class BlogController extends Controller
         }
 
         $categories = Category::all();
+        $categories->each(function($category, $articles){
+            $numcat = Article::where('category_id',$category->id)->where('published', 'yes')->count();
+            $category['numcat'] = $numcat;
+        });
 
         $articles->each(function($article, $key) {
             $category = Category::where('id',$article->category_id)->first();
