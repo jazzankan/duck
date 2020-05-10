@@ -49025,8 +49025,8 @@ var app = new Vue({
       return this.selshare;
     },
     blogcatall: function blogcatall() {
+      this.catcolor = true;
       document.getElementById('showall').submit();
-      document.getElementById('allfat').style.fontWeight = "900";
     },
     blogcatcid: function blogcatcid(cid) {
       document.getElementById(cid).submit();

@@ -10,7 +10,8 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        if(isset($request->cid) && $request->cid != "allcat"){
+        $requestcid = $request->cid;
+        if(isset($requestcid) && $request->cid != "allcat"){
             $articles = Article::where('published','yes')->where('category_id', $request->cid)->orderByDesc('updated_at')->paginate(6);
         }
         else {
@@ -24,6 +25,6 @@ class BlogController extends Controller
             $article['catname'] = $category['name'];
         });
 
-        return view('blog')->with('articles',$articles)->with('categories', $categories);
+        return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid);
     }
 }
