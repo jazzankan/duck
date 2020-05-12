@@ -48,7 +48,7 @@ class ArticleController extends Controller
             'category_id' => 'required'
         ]);
 
-        $project = Article::create($attributes);
+        Article::create($attributes);
 
         if($request['published'] == "yes") {
             return redirect('blog');

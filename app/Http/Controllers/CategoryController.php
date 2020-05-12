@@ -35,7 +35,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'name' => 'required | min:3'
+        ]);
+
+         Category::create($attributes);
+
+        return redirect('articles');
+
     }
 
     /**
@@ -57,7 +64,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit')->with('category',$category);
     }
 
     /**
