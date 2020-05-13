@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+       $categories = Category::all()->sortBy('name');
+
+        return view('categories.list')->with('categories', $categories);
     }
 
     /**
@@ -101,6 +103,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
     }
 }
