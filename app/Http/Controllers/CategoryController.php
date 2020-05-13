@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Article;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -64,7 +65,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit')->with('category',$category);
+        $articlenum = Article::where('category_id', $category->id)->count();
+
+        return view('categories.edit')->with('category',$category)->with('articlenum', $articlenum);
     }
 
     /**
@@ -76,7 +79,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        if($request['delete'] === 'delete') {
+            $this->destroy($category);
+            return redirect('/articles');
+        }
+
+        $attributes = request()->validate([
+            'name' => 'required | min:3'
+        ]);
+
+        $category->update(request(['name']));
+
+        return redirect('/blog');
     }
 
     /**
