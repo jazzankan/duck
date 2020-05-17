@@ -47,6 +47,8 @@ Route::post('/memories/create','MemoryController@store');
 
 Route::resources(['/articles' => 'ArticleController']);
 
+Route::post('/blog','BlogController@index');
+
 Route::resources(['/categories' => 'CategoryController']);
 
 

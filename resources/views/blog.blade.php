@@ -16,6 +16,10 @@
                     </p>
             </div>
             <div class="col-sm-4">
+                <form id="search" method="post" action="/blog">
+                    @csrf
+                <input type="text" value="{{ $searchterm }}" name="search"/> <button type="submit" class="btn btn-primary newmem">Sök</button>
+                </form>
                 <h2>Kategorier</h2>
                 <div>
                     <ul class="list-group">

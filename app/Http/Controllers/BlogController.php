@@ -10,12 +10,21 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
+        $searchterm = $request['search'];
         $requestcid = $request->cid;
-        if(isset($requestcid) && $request->cid != "allcat"){
-            $articles = Article::where('published','yes')->where('category_id', $request->cid)->orderByDesc('updated_at')->paginate(6);
+        if(empty(['$_POST'])) {
+            if (isset($requestcid) && $request->cid != "allcat") {
+                $articles = Article::where('published', 'yes')->where('category_id',
+                    $request->cid)->orderByDesc('updated_at')->paginate(6);
+            } else {
+                $articles = Article::where('published', 'yes')->orderByDesc('updated_at')->paginate(6);
+            }
         }
         else {
-            $articles = Article::where('published', 'yes')->orderByDesc('updated_at')->paginate(6);
+            $articles = Article::
+            where('body', 'LIKE', '%'.$searchterm.'%')
+                    ->orWhere('heading', 'LIKE', '%'.$searchterm.'%')
+                    ->orderByDesc('updated_at')->paginate(6);
         }
 
         $categories = Category::all();
@@ -29,6 +38,6 @@ class BlogController extends Controller
             $article['catname'] = $category['name'];
         });
         $allart = Article::where('published','yes')->count();
-        return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid)->with('allart', $allart);
+        return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid)->with('allart', $allart)->with('searchterm', $searchterm);
     }
 }
