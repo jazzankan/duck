@@ -66,7 +66,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('articles.show')->with('article', $article);
     }
 
     /**

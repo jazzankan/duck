@@ -11,8 +11,9 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $searchterm = $request['search'];
+        $codedsearchterm = htmlentities($searchterm);
         $requestcid = $request->cid;
-        if(empty(['$_POST'])) {
+        if(!$searchterm) {
             if (isset($requestcid) && $request->cid != "allcat") {
                 $articles = Article::where('published', 'yes')->where('category_id',
                     $request->cid)->orderByDesc('updated_at')->paginate(6);
@@ -22,7 +23,7 @@ class BlogController extends Controller
         }
         else {
             $articles = Article::
-            where('body', 'LIKE', '%'.$searchterm.'%')
+            where('body', 'LIKE', '%'.$codedsearchterm.'%')
                     ->orWhere('heading', 'LIKE', '%'.$searchterm.'%')
                     ->orderByDesc('updated_at')->paginate(6);
         }
@@ -38,6 +39,7 @@ class BlogController extends Controller
             $article['catname'] = $category['name'];
         });
         $allart = Article::where('published','yes')->count();
+
         return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid)->with('allart', $allart)->with('searchterm', $searchterm);
     }
 }
