@@ -9,7 +9,9 @@
                     <div class="{{ $key }}" style="display:none;">{!! $art->body !!}</div>
                     <p>Kategori: {{ $art->catname }}</p>
                     <p>Publicerad: {{$art->updated_at->format('Y-m-d')}}</p>
-                    <p>Direktlänk: https://</p>
+                    <div class="{{ $key }}" style="display:none;">
+                    Direktlänk: <a href="https://<?php echo $server = $_SERVER['SERVER_NAME'];?>/articles/{{ $art->id }}">https://<?php echo $server = $_SERVER['SERVER_NAME'];  ?>/articles/{{ $art->id }}</a>
+                    </div>
                     <hr>
                     @endforeach
                     <p>

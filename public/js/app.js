@@ -49016,6 +49016,14 @@ var app = new Vue({
       } else {
         body.style.display = "block";
       }
+
+      var link = document.getElementsByClassName(key)[1];
+
+      if (link.style.display != "none") {
+        link.style.display = "none";
+      } else {
+        link.style.display = "block";
+      }
     },
     getSelshare: function getSelshare() {
       if (document.getElementsByName("selshare[]")[0].value) {
