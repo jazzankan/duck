@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
+                @if($articles->isNotEmpty())
                 @foreach($articles as $key => $art)
                     <h2><a href="#" v-on:click="toggleActive({{ $key }})">{{$art->heading}}</a></h2>
                     <div class="{{ $key }}" style="display:none;">{!! $art->body !!}</div>
@@ -17,6 +18,9 @@
                     <p>
                         {{$articles->render()}}
                     </p>
+                    @else
+                    <h3>Du kammade noll!</h3>
+                    @endif
             </div>
             <div class="col-sm-4">
                 <form id="search" method="post" action="/blog">
