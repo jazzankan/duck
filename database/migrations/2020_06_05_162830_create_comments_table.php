@@ -19,6 +19,8 @@ class CreateCommentsTable extends Migration
             $table->mediumText('body');
             $table->string('name');
             $table->string('email');
+            $table->enum('wishpublic', ['yes','no']);
+            $table->enum('published', ['yes','no']);
             $table->timestamps();
         });
     }

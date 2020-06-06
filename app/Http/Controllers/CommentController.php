@@ -14,7 +14,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::all()->sortBy('created_at');
+
+        return view('comments.list')->with('comments', $comments);
     }
 
     /**
