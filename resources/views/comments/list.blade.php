@@ -4,7 +4,8 @@
         <h1>Nya bloggkommentarer</h1>
         <ul class="list-group striped-list">
             @foreach ($comments as $comment)
-                <li class="list-group-item"><h4><a href="/categories/{{ $comment->id }}/edit">{{ $comment->body }}</a></h4>
+                <li class="list-group-item"><a href="/comments/{{ $comment->id }}/edit"><strong>Kommentar:</strong></a> {{ $comment->body }}<br>
+                    <strong>Hör till inlägget "{{ $comment->belongart['heading'] }}". Kommentaren skapad {{ $comment->created_at }}</strong></li>
             @endforeach
         </ul>
     </div>

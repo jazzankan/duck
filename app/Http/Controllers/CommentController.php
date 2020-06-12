@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Article;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -19,7 +20,12 @@ class CommentController extends Controller
 
     public function index()
     {
-        $comments = Comment::all()->sortBy('created_at');
+        $comments = Comment::where('published', 'no')->orderBy('created_at', 'desc')->get();
+        $articles = Article::all();
+
+        $comments->each(function ($item, $key) use ($articles){
+            $item['belongart'] = $articles->firstWhere('id',$item->id);
+        });
 
         return view('comments.list')->with('comments', $comments);
     }
