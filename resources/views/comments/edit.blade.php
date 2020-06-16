@@ -22,6 +22,12 @@
                         </div>
                     </div>
             @endif
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="reviewed" value="reviewed" checked="checked">
+                    <label class="form-check-label" for="publish">Granskad</label>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">Skicka</button>
         </form>
     </div>
