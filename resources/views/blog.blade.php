@@ -25,7 +25,12 @@
             <div class="col-sm-4">
                 <form id="search" method="post" action="/blog">
                     @csrf
-                <input type="text" value="{{ $searchterm }}" name="search"/> <button type="submit" class="btn btn-primary newmem">Sök</button>
+                    <div class="input-group">
+                <input type="text" class="form-control" value="{{ $searchterm }}" name="search"/>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary newmem">Sök</button>
+                        </div>
+                    </div>
                 </form>
                 <h2>Kategorier</h2>
                 <div>

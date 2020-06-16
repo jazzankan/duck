@@ -51,7 +51,7 @@ Route::post('/blog','BlogController@index');
 
 Route::resources(['/categories' => 'CategoryController']);
 
-Route::get('/comments','CommentController@index');
+Route::resources(['/comments' => 'CommentController']);
 
 
 
