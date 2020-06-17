@@ -24,7 +24,7 @@ class CommentController extends Controller
         $articles = Article::all();
 
         $comments->each(function ($item, $key) use ($articles){
-            $item['belongart'] = $articles->firstWhere('id',$item->id);
+            $item['belongart'] = $articles->firstWhere('id',$item->article_id);
         });
 
         return view('comments.list')->with('comments', $comments);
