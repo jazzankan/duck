@@ -82,7 +82,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        request()->validate([
+            'body' => 'required | min:2',
+            'published' => 'required | in:yes,no',
+            'reviewed' => 'required | in:yes,no'
+        ]);
+
+        $comment->update(request(['body','published','reviewed']));
     }
 
     /**

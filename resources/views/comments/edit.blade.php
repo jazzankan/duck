@@ -17,19 +17,20 @@
             @if($comment->wishpublic ==='yes')
                     <div class="form-group">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="publish" value="publish">
+                            <input type="checkbox" class="form-check-input" name="wishpublic" value="yes">
                             <label class="form-check-label" for="publish">Publicera</label>
                         </div>
                     </div>
             @endif
             <div class="form-group">
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="reviewed" value="reviewed" checked="checked">
+                    <input type="checkbox" class="form-check-input" name="reviewed" value="yes" checked="checked">
                     <label class="form-check-label" for="publish">Granskad</label>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Skicka</button>
         </form>
+        <p> {{ $comment->belongart }}</p>
     </div>
     <div>
         <p>
