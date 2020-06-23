@@ -9,7 +9,7 @@
             <div class="form-group row">
                 <div class="col-sm-6">
                     <label for="name">Text:</label>
-                    <input type="text" class="form-control" value="{{ $comment->body }}" name="body"/>
+                    <textarea type="text" class="form-control" value="{{ $comment->body }}" name="body">{{ $comment->body }}</textarea>
                 </div>
             </div>
             <p>Inskickad av <strong>{{ $comment->name }}</strong><br> {{ $comment->email }}</p>
@@ -24,7 +24,7 @@
             @endif
             <div class="form-group">
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="reviewed" value="yes" checked="checked">
+                    <input type="checkbox" class="form-check-input" name="reviewed" value="yes" checked="checked" >
                     <label class="form-check-label" for="publish">Granskad</label>
                 </div>
             </div>

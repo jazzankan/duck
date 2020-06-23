@@ -20,10 +20,10 @@ class CommentController extends Controller
 
     public function index()
     {
-        $comments = Comment::where('published', 'no')->orderBy('created_at', 'desc')->get();
+        $comments = Comment::where('published', 'no')->where('reviewed', 'no')->orderBy('created_at', 'desc')->get();
         $articles = Article::all();
 
-        $comments->each(function ($item, $key) use ($articles){
+       $comments->each(function ($item, $key) use ($articles){
             $item['belongart'] = $articles->firstWhere('id',$item->article_id);
         });
 
@@ -82,6 +82,15 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
+
+        if(!$request['reviewed']){
+            $request['reviewed'] = "no";
+        }
+        if(!$request['published']){
+            $request['published'] = "no";
+        }
+        //dd($request['reviewed']);
+
         request()->validate([
             'body' => 'required | min:2',
             'published' => 'required | in:yes,no',
@@ -89,6 +98,8 @@ class CommentController extends Controller
         ]);
 
         $comment->update(request(['body','published','reviewed']));
+
+        return redirect('/comments');
     }
 
     /**
