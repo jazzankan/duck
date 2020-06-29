@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Category;
+use App\Comment;
 
 class BlogController extends Controller
 {
@@ -33,10 +34,12 @@ class BlogController extends Controller
             $numcat = Article::where('category_id',$category->id)->where('published', 'yes')->count();
             $category['numcat'] = $numcat;
         });
-
+        //$comments = Comment::where('published', 'yes');
         $articles->each(function($article, $key) {
             $category = Category::where('id',$article->category_id)->first();
             $article['catname'] = $category['name'];
+            $comments = Comment::where('published','yes')->where('article_id',$article->id)->get();
+            $article['comments']  = $comments;
         });
         $allart = Article::where('published','yes')->count();
         return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid)->with('allart', $allart)->with('searchterm', $searchterm);

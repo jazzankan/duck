@@ -12,6 +12,9 @@
                     <p>Publicerad: {{$art->updated_at->format('Y-m-d')}}</p>
                     <div class="{{ $key }}" style="display:none;">
                     Direktlänk: <a href="https://<?php echo $server = $_SERVER['SERVER_NAME'];?>/articles/{{ $art->id }}">https://<?php echo $server = $_SERVER['SERVER_NAME'];  ?>/articles/{{ $art->id }}</a>
+                      @foreach($art->comments as $com)
+                            <p>{{ $com->body }}</p>
+                          @endforeach
                     </div>
                     <hr>
                     @endforeach
