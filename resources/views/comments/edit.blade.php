@@ -17,7 +17,7 @@
             @if($comment->wishpublic ==='yes')
                     <div class="form-group">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="wishpublic" value="yes">
+                            <input type="checkbox" class="form-check-input" name="published" value="yes">
                             <label class="form-check-label" for="publish">Publicera</label>
                         </div>
                     </div>

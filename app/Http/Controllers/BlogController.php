@@ -17,16 +17,16 @@ class BlogController extends Controller
         if(!$searchterm) {
             if (isset($requestcid) && $request->cid != "allcat") {
                 $articles = Article::where('published', 'yes')->where('category_id',
-                    $request->cid)->orderByDesc('updated_at')->paginate(6);
+                    $request->cid)->orderByDesc('updated_at')->paginate(5);
             } else {
-                $articles = Article::where('published', 'yes')->orderByDesc('updated_at')->paginate(6);
+                $articles = Article::where('published', 'yes')->orderByDesc('updated_at')->paginate(5);
             }
         }
         else {
             $articles = Article::
             where('body', 'LIKE', '%'.$codedsearchterm.'%')
                     ->orWhere('heading', 'LIKE', '%'.$searchterm.'%')
-                    ->orderByDesc('updated_at')->paginate(6);
+                    ->orderByDesc('updated_at')->paginate(5);
         }
 
         $categories = Category::all();

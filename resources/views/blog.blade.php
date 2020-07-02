@@ -6,18 +6,20 @@
             <div class="col-sm-8">
                 @if($articles->isNotEmpty())
                 @foreach($articles as $key => $art)
-                    <h2><a href="#" v-on:click="toggleActive({{ $key }})">{{$art->heading}}</a></h2>
+                    <h2 id="{{ $key }}"><a href="#{{ $key }}" v-on:click="toggleActive({{ $key }})">{{$art->heading}}</a></h2>
                     <div class="{{ $key }}" style="display:none;">{!! $art->body !!}
-                        <p>Kommentarer:</p>
+                        @if(count($art->comments) > 0)<p>Kommentarer:</p>
                         @foreach($art->comments as $com)
                             <p><span class="commentbody">{{ $com->body }}</span><br><b>{{ $com->name }}</b></p>
                         @endforeach
+                            @endif
                     </div>
                     <p>Kategori: {{ $art->catname }}</p>
                     <p>Publicerad: {{$art->updated_at->format('Y-m-d')}}</p>
                     <div class="{{ $key }}" style="display:none;">
                     Direktlänk: <a href="https://<?php echo $server = $_SERVER['SERVER_NAME'];?>/articles/{{ $art->id }}">https://<?php echo $server = $_SERVER['SERVER_NAME'];  ?>/articles/{{ $art->id }}</a>
                     </div>
+                    <a href="comments/create?artid={{ $art->id }}">Återkoppla/Kommentera</a>
                     <hr>
                     @endforeach
                     <p>

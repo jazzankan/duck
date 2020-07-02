@@ -46,12 +46,12 @@ const app = new Vue({
             return this.detail;
         },
         toggleActive(key) {
-                var body = document.getElementsByClassName(key)[0];
-                if(body.style.display != "none") {
-                    body.style.display = "none";
+                var cbody = document.getElementsByClassName(key)[0];
+                if(cbody.style.display != "none") {
+                    cbody.style.display = "none";
                 }
                 else{
-                    body.style.display = "block";
+                    cbody.style.display = "block";
                 }
             var link = document.getElementsByClassName(key)[1];
             if(link.style.display != "none") {

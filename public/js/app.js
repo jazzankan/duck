@@ -49009,12 +49009,12 @@ var app = new Vue({
       return this.detail;
     },
     toggleActive: function toggleActive(key) {
-      var body = document.getElementsByClassName(key)[0];
+      var cbody = document.getElementsByClassName(key)[0];
 
-      if (body.style.display != "none") {
-        body.style.display = "none";
+      if (cbody.style.display != "none") {
+        cbody.style.display = "none";
       } else {
-        body.style.display = "block";
+        cbody.style.display = "block";
       }
 
       var link = document.getElementsByClassName(key)[1];
