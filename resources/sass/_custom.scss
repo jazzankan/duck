@@ -58,10 +58,7 @@ ul.striped-list > li:nth-of-type(even) {
 .ongoingtask{
     color: #d3a60c;
 }
-.finishedtask{
-    color: green;
-}
-.published{
+.finishedtask, .published, .articletitle{
     color: green;
 }
 .unpublished{

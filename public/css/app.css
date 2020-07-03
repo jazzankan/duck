@@ -10732,11 +10732,9 @@ ul.striped-list > li:nth-of-type(even) {
   color: #d3a60c;
 }
 
-.finishedtask {
-  color: green;
-}
-
-.published {
+.finishedtask,
+.published,
+.articletitle {
   color: green;
 }
 
