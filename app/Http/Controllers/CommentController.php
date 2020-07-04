@@ -52,15 +52,16 @@ class CommentController extends Controller
     {
         $attributes = request()->validate([
 
+            'article_id' => 'required | int',
             'name' => 'required | min:3',
-            'email' => 'required | min:3',
+            'email' => 'required | email | unique:users,email',
             'body' => 'required | min:3',
-            'wishpublic' => 'required',
-            'published' => 'required',
-            'reviewed' => 'required'
+            'wishpublic' => 'required | in:yes,no'
         ]);
 
         Comment::create($attributes);
+
+        return redirect('/blog');
     }
 
     /**

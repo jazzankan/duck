@@ -20,8 +20,8 @@ class CreateCommentsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->enum('wishpublic', ['yes','no']);
-            $table->enum('published', ['yes','no']);
-            $table->enum('reviewed', ['yes','no']);
+            $table->enum('published', ['yes','no'])->default('no');
+            $table->enum('reviewed', ['yes','no'])->default('no');
             $table->timestamps();
         });
     }

@@ -24,9 +24,10 @@
                         <label class="form-check-label" for="publish">Jag vill att min kommentar publiceras i bloggen.</label></p>
                     </div>
                     <div class="form-group">
-                        <label for="description">Min text:</label>
-                        <textarea class="form-control" id="description" name="description" required>{{ old('body') }}</textarea>
+                        <label for="body">Min text:</label>
+                        <textarea class="form-control" id="body" name="body" required>{{ old('body') }}</textarea>
                     </div>
+                    <input type="hidden" value="{{ $article->id }}" name="article_id"/>
                 </div>
             </div>
             <p><button type="submit" class="btn btn-primary">Skicka</button></p>
