@@ -48999,7 +48999,8 @@ var app = new Vue({
     detail: '',
     selshare: false,
     newtaginput: false,
-    memfilter: false
+    memfilter: false,
+    artshow: false
   },
   methods: {
     getDetail: function getDetail(event, taskdet) {
@@ -49038,6 +49039,9 @@ var app = new Vue({
     },
     blogcatcid: function blogcatcid(cid) {
       document.getElementById(cid).submit();
+    },
+    showart: function showart() {
+      this.artshow ? this.artshow = false : this.artshow = true;
     }
   }
 });

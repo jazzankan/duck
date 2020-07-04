@@ -36,7 +36,8 @@ const app = new Vue({
         detail: '',
         selshare : false,
         newtaginput : false,
-        memfilter : false
+        memfilter : false,
+        artshow : false
     },
     methods: {
         getDetail: function (event,taskdet) {
@@ -73,6 +74,9 @@ const app = new Vue({
         },
         blogcatcid : function(cid){
             document.getElementById(cid).submit()
+        },
+        showart : function() {
+            this.artshow ? this.artshow = false : this.artshow = true;
         }
     }
 });

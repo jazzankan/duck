@@ -50,7 +50,17 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+
+            'name' => 'required | min:3',
+            'email' => 'required | min:3',
+            'body' => 'required | min:3',
+            'wishpublic' => 'required',
+            'published' => 'required',
+            'reviewed' => 'required'
+        ]);
+
+        Comment::create($attributes);
     }
 
     /**

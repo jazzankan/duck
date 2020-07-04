@@ -15,24 +15,24 @@
             @csrf
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <p><label for="name">Namn (gärna ditt riktiga):</label>
-                        <input type="text" class="form-control" value="{{ old('name') }}" name="name"/></p>
+                    <p><label for="name">Namn - gärna ditt riktiga:</label>
+                        <input type="text" class="form-control" value="{{ old('name') }}" name="name" required/></p>
                     <p><label for="email">E-post:</label>
-                    <input type="text" class="form-control" value="{{ old('email') }}" name="email"/></p>
+                    <input type="email" class="form-control" value="{{ old('email') }}" name="email" required/></p>
                     <div class="form-check">
-                        <p><input type="checkbox" class="form-check-input" name="wishpublic" value="yes" >
+                        <p><input type="checkbox" class="form-check-input" name="wishpublic" value="yes" {{ (old('wishpublic') === 'yes') ? 'checked' : '' }}>
                         <label class="form-check-label" for="publish">Jag vill att min kommentar publiceras i bloggen.</label></p>
                     </div>
                     <div class="form-group">
                         <label for="description">Min text:</label>
-                        <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
+                        <textarea class="form-control" id="description" name="description" required>{{ old('body') }}</textarea>
                     </div>
                 </div>
             </div>
             <p><button type="submit" class="btn btn-primary">Skicka</button></p>
         </form>
-        <p>Visa inläggets text här:</p>
-        <p>{{ $article->body }}</p>
+        <p v-on:click="showart()"><a href="#">Visa inlägget du vill kommentera här (ifall du behöver kolla något):</a></p>
+        <div v-if="artshow">{!! $article->body !!}</div>
     <div>
         <p>
         @if ($errors->any())
