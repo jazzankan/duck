@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Category;
 use App\Comment;
+use Session;
 
 class BlogController extends Controller
 {
@@ -42,6 +43,7 @@ class BlogController extends Controller
             $article['comments']  = $comments;
         });
         $allart = Article::where('published','yes')->count();
-        return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid)->with('allart', $allart)->with('searchterm', $searchterm);
+        $thanks = Session::get('thanks');
+        return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid)->with('allart', $allart)->with('searchterm', $searchterm)->with('thanks', $thanks);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Article;
 use Illuminate\Http\Request;
+use Session;
 
 class CommentController extends Controller
 {
@@ -50,8 +51,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $attributes = request()->validate([
+        if($request['wishpublic'] != "yes"){
+            $request['wishpublic'] = "no";
+        }
 
+        $attributes = request()->validate([
             'article_id' => 'required | int',
             'name' => 'required | min:3',
             'email' => 'required | email | unique:users,email',
@@ -60,6 +64,8 @@ class CommentController extends Controller
         ]);
 
         Comment::create($attributes);
+
+        Session::put('thanks', 'Tack för din kommentar!');
 
         return redirect('/blog');
     }

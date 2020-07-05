@@ -10738,6 +10738,13 @@ ul.striped-list > li:nth-of-type(even) {
   color: green;
 }
 
+.thankyou {
+  color: green;
+  background-color: #d2e8b9;
+  padding: 3px;
+  text-align: center;
+}
+
 .unpublished {
   color: red;
 }
