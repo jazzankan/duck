@@ -65,6 +65,9 @@ class CommentController extends Controller
 
         Comment::create($attributes);
 
+        $anders = User::where('id', 1)->get();
+        $anders->notify(new NewComment());
+
         Session::put('thanks', 'Tack för din kommentar!');
 
         return redirect('/blog');
