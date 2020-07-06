@@ -21,7 +21,7 @@
                     <input type="email" class="form-control" value="{{ old('email') }}" name="email" required/></p>
                     <div class="form-check">
                         <p><input type="checkbox" class="form-check-input" name="wishpublic" value="yes" {{ (old('wishpublic') === 'yes') ? 'checked' : '' }}>
-                        <label class="form-check-label" for="publish">Jag vill att min kommentar publiceras i bloggen.</label></p>
+                        <label class="form-check-label" for="wishpublic">Jag vill att min kommentar publiceras i bloggen.</label></p>
                     </div>
                     <div class="form-group">
                         <label for="body">Min text:</label>

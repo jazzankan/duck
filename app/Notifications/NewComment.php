@@ -21,7 +21,7 @@ class NewComment extends Notification
 
     public function __construct()
     {
-        $this->project = Comment::latest()->first();
+        $this->comment = Comment::latest()->first();
     }
 
     /**
@@ -48,7 +48,7 @@ class NewComment extends Notification
                     ->from('anders@webbsallad.se', 'Ankhemmet')
                     ->subject('Ny kommentar Ankhemmets blogg!')
                     ->line('Det har skapats en ny kommentar')
-                    ->line('Önskas publicerad: ' .  $this->wishpublic)
+                    ->line('Önskas publicerad: ' .  $this->comment->wishpublic)
                     ->action('Åtgärda', url('/comments'));
     }
 

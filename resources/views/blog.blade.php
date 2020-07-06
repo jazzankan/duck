@@ -20,9 +20,9 @@
         <p>Kategori: {{ $art->catname }}</p>
         <p>Publicerad: {{$art->updated_at->format('Y-m-d')}}</p>
         <div class="{{ $key }}" style="display:none;">
-        Direktlänk: <a href="https://<?php echo $server = $_SERVER['SERVER_NAME'];?>/articles/{{ $art->id }}">https://<?php echo $server = $_SERVER['SERVER_NAME'];  ?>/articles/{{ $art->id }}</a>
+        <p>Direktlänk: <a href="https://<?php echo $server = $_SERVER['SERVER_NAME'];?>/articles/{{ $art->id }}">https://<?php echo $server = $_SERVER['SERVER_NAME'];  ?>/articles/{{ $art->id }}</a></p>
         </div>
-        <a href="comments/create?artid={{ $art->id }}">Återkoppla/Kommentera</a>
+        <p><a href="comments/create?artid={{ $art->id }}">Återkoppla/Kommentera</a></p>
         <hr>
         @endforeach
         <p>

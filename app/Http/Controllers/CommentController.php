@@ -6,6 +6,8 @@ use App\Comment;
 use App\Article;
 use Illuminate\Http\Request;
 use Session;
+use App\User;
+use App\Notifications\NewComment;
 
 class CommentController extends Controller
 {
@@ -65,7 +67,7 @@ class CommentController extends Controller
 
         Comment::create($attributes);
 
-        $anders = User::where('id', 1)->get();
+        $anders = User::where('id', 1)->first();
         $anders->notify(new NewComment());
 
         Session::put('thanks', 'Tack för din kommentar!');
