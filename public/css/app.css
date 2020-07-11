@@ -10753,6 +10753,19 @@ ul.striped-list > li:nth-of-type(even) {
   color: saddlebrown;
 }
 
+.imgcontainer {
+  position: relative;
+  text-align: center;
+}
+
+.bottom-centered {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

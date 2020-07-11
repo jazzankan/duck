@@ -73,3 +73,13 @@ ul.striped-list > li:nth-of-type(even) {
 .commentbody{
     color:saddlebrown;
 }
+.imgcontainer {
+    position: relative;
+    text-align: center;
+}
+.bottom-centered {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}

@@ -26,14 +26,20 @@
             <div class="container">
                 @if(isset(Auth::user()->name))
                     @if (\Request::is('blog'))
-                        <h1>Kläckt från <a href="/">Ankhemmet</a> </h1>
+                        <h1>Kläckt från <a href="/">Ankhemmet</a></h1>
+                        @elseif(\Request::is('about'))
+                        <h1>Om <a href="/">Ankhemmet</a></h1>
                 @else
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ Auth::user()->name .$pageowner ?? 'Startsida' }}
                 </a>
                     @endif
                 @else
-                    <h1>Kläckt från Ankhemmet</h1>
+                    @if(\Request::is('about'))
+                        <h1>Om Ankhemmet</h1>
+                        @else
+                            <h1>Kläckt från <a href="/about">Ankhemmet</a></h1>
+                        @endif
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
