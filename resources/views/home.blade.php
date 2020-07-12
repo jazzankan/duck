@@ -10,6 +10,7 @@
                     <p><a href="/projects">Projekt</a></p>
                     <p><a href="/todos">Ofärdiga arbetsuppgifter</a></p>
                     <p><a href="/memories">Minnesgrejer</a></p>
+                    <p><a href="/about">Om Ankhemmet</a> - lite info för externa</p>
                     <hr>
                     <h4>Blogggrejer</h4>
                     <p><a href="/blog">Publik blogg</a></p>
