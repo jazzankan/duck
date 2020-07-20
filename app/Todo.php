@@ -12,4 +12,8 @@ class Todo extends Model
     {
         return $this->belongsTo('App\Project');
     }
+    public function users()
+    {
+        return $this->hasManyThrough('App\User', 'App\Project');
+    }
 }
