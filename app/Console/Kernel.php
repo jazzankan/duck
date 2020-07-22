@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Notifications\NeardeadTodo;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Notifications\NeardeadProject;
@@ -45,20 +46,22 @@ class Kernel extends ConsoleKernel
                             }
                     }
         }
-            //$today =  $date->format('Y-m-d');
-            //$neardeadtodo = Todo::whereIn('deadline',[$today])->get();
-            //if ($neardeadtodo) {
-                //foreach ($neardeadtodo as $ndt) {
-                    //$u = $ndt->projects()->users()->get();
-            $ndt  = "bulle";
-                    $u = User::all()->get();
+            $today = new \DateTime();
+            $today = $today->format('Y-m-d');
+            $neardeadtodo = Todo::where('deadline', $today)->get();
+            if ($neardeadtodo) {
+                foreach ($neardeadtodo as $ndt) {
+                    //$u = User::all()->first();
+                   // $t = Todo::all()->first();
+                    //$u->notify(new NeardeadTodo($t));
+                    $project = Project::where('id', $ndt->project_id)->first();
+                    $u = $project->users()->wherePivot('project_id',$ndt->project_id)->get();
                     foreach ($u as $unote) {
                         sleep(5);
                         $unote->notify(new NeardeadTodo($ndt));
+                        }
                     }
-                //}
-            //}
-
+                }
             })->everyMinute();
      }
 
