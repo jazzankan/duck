@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
             $date = new \DateTime();
             $latedate = $date->add(new \DateInterval('P3D'));
             $latedate = $latedate->format('Y-m-d');
-            $neardeadproj = Project::whereIn('deadline', [$latedate])->get();
+            $neardeadproj = Project::where('deadline', $latedate)->get();
             if ($neardeadproj) {
                 foreach ($neardeadproj as $ndp) {
                     $u = $ndp->users()->wherePivot('project_id', $ndp->id)->get();
@@ -48,12 +48,9 @@ class Kernel extends ConsoleKernel
         }
             $today = new \DateTime();
             $today = $today->format('Y-m-d');
-            $neardeadtodo = Todo::where('deadline', $today)->get();
+            $neardeadtodo = Todo::where('status','!=','d')->where('deadline', $today)->get();
             if ($neardeadtodo) {
                 foreach ($neardeadtodo as $ndt) {
-                    //$u = User::all()->first();
-                   // $t = Todo::all()->first();
-                    //$u->notify(new NeardeadTodo($t));
                     $project = Project::where('id', $ndt->project_id)->first();
                     $u = $project->users()->wherePivot('project_id',$ndt->project_id)->get();
                     foreach ($u as $unote) {
@@ -62,7 +59,7 @@ class Kernel extends ConsoleKernel
                         }
                     }
                 }
-            })->everyMinute();
+            })->daily();
      }
 
     /**
