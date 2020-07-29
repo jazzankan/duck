@@ -13,5 +13,6 @@
         @endforeach
         @endif
             <p>Publicerad: {{$article->updated_at->format('Y-m-d')}}</p>
+        <p><a href="../comments/create?artid={{ $article->id }}">Återkoppla/Kommentera</a></p>
     </div>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Category;
+use App\Memory;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -22,8 +23,14 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::orderByDesc('updated_at')->paginate(6);
+        $blogtag = "bloggidéer";
+        $blogideas = Memory::where(function ($q) use ($blogtag) {
+            $q->whereHas('tags', function ($query) use ($blogtag) {
+                $query->where('name', 'LIKE', '%'.$blogtag.'%');
+            });
+                })->orderByDesc('updated_at')->limit(2)->get();
 
-        return view('articles.list')->with('articles',$articles);
+        return view('articles.list')->with('articles',$articles)->with('blogideas',$blogideas);
     }
 
     /**

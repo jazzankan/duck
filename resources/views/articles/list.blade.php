@@ -24,7 +24,14 @@
             </div>
             <div class="col-sm-4" style="background-color:#ffffcc">
                 <h2>Blogganteckningar</h2>
-                <p>Under utveckling</p>
+                <p>5 senaste från "Minnesgrejer" med tag "bloggidéer".</p>
+                @foreach ($blogideas as $bi)
+                    <p><strong>{{$bi->title}}</strong><br>
+                    {{$bi->description}}</p>
+                    <hr>
+                    @endforeach
+
+
             </div>
         </div>
     </div>
