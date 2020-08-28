@@ -10766,6 +10766,12 @@ ul.striped-list > li:nth-of-type(even) {
           transform: translate(-50%, -50%);
 }
 
+.card-header {
+  font-family: "Lobster", sans-serif;
+  font-size: 1.7em;
+  color: #00A000;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

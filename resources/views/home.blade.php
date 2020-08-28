@@ -5,25 +5,27 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header"><img src="https://webbsallad.se/ankfiles/redduck100.png"> Duckboard</div>
                 <div class="card-body">
-                    <p><a href="/projects">Projekt</a></p>
-                    <p><a href="/todos">Ofärdiga arbetsuppgifter</a></p>
-                    <p><a href="/memories">Minnesgrejer</a></p>
-                    <p><a href="/about">Om Ankhemmet</a> - lite info för externa</p>
+                    <h4><a href="/memories">Minnen</a></h4>
                     <hr>
-                    <h4>Blogggrejer</h4>
+                    <h5>Projekt</h5>
+                    <p><a href="/projects">Mina projekt</a></p>
+                    <p><a href="/todos">Ofärdiga arbetsuppgifter</a></p>
+                    <hr>
+                    <h5>Blogg</h5>
                     <p><a href="/blog">Publik blogg</a></p>
                     <p><a href="/articles">Blogginlägg</a> - skapa och redigera</p>
-                    <p><a href="/categories">Bloggkategorier</a> - skapa och redigera</p>
                     <p><a href="/comments">Nya bloggkommentarer</a></p>
+                    <p><a href="/categories">Bloggkategorier</a> - skapa och redigera</p>
+                    <p><a href="/about">Om Ankhemmet</a> - lite info för bloggbesökare</p>
                     <hr>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-                    You are logged in!
+                    Du är inloggad!
                 </div>
             </div>
         </div>
