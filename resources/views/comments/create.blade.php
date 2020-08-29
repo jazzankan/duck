@@ -9,7 +9,7 @@
             <li>Din e-postadress publiceras <strong>aldrig</strong> om du inte själv skriver in den i själva kommentarstexten. Den lämnas inte vidare till någon.</li>
             <li>Du kan välja om du bara vill höra av dig eller om du vill ha din kommentar publicerad.</li>
             <li>Alla kommentarer granskas innan de eventuellt publiceras. Det kan ta lite tid!</li>
-            <li>Om du kommenterar går du med på att namn och e-postadress lagras i Ankhemmets databas.</li>
+            <li>Om du vill publicera din kommentar går du med på att namn och e-postadress lagras i Ankhemmets databas.</li>
         </ul>
         <form method="post" action="{{ route('comments.store') }}">
             @csrf

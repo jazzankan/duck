@@ -30,7 +30,7 @@
                         <h1>Kläckt från <a href="/">Ankhemmet</a></h1>
                         @elseif(\Request::is('about'))
                         <h1>Om <a href="/">Ankhemmet</a></h1>
-                @else
+                    @else
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ Auth::user()->name .$pageowner ?? 'Startsida' }}
                 </a>
@@ -42,17 +42,15 @@
                             <h1>Kläckt från <a href="/about">Ankhemmet</a></h1>
                         @endif
                 @endif
+                    @if(isset(Auth::user()->name))
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                       <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
                     </ul>
-
-                    <!-- Right Side Of Navbar -->
+                        <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -85,6 +83,7 @@
                         @endguest
                     </ul>
                 </div>
+                    @endif
             </div>
         </nav>
 
