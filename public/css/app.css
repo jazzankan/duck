@@ -10772,6 +10772,10 @@ ul.striped-list > li:nth-of-type(even) {
   color: #00A000;
 }
 
+.fullarticle {
+  max-width: 750px;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

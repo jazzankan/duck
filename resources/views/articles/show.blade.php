@@ -2,6 +2,7 @@
 @section('title', ' - blogginlägg')
 @section('content')
     <div class="container">
+        <div class="fullarticle">
         <p><a href="/blog" class="btn btn-primary btn-sm">Visa alla blogginlägg</a></p>
         <h2>{{ $article->heading  }}</h2>
             <p>{!! $article->body !!}</p>
@@ -14,5 +15,6 @@
         @endif
             <p>Publicerad: {{$article->updated_at->format('Y-m-d')}}</p>
         <p><a href="../comments/create?artid={{ $article->id }}">Återkoppla/Kommentera</a></p>
+        </div>
     </div>
 @endsection
