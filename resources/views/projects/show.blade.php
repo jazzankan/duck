@@ -41,6 +41,11 @@
                     @endforeach
             </ul>
         @endif
+        <p><span class="font-weight-bold">Kommentarer:</span><br>
+        @foreach($projcomments as $c)
+            <p>{{ $c->body }}<br><i>{{ $c->user->name }}</i></p>
+        @endforeach
+
         <hr>
             <div class="todos">
                 <div>

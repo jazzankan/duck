@@ -40,6 +40,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Tag');
     }
+    public function projcomments()
+    {
+        return $this->hasMany('App\Projcomment');
+    }
 
     public function scopeShared($query, $myname, $project)
     {

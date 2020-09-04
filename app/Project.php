@@ -22,4 +22,8 @@ class Project extends Model
     {
         return $this->hasMany('App\File');
     }
+    public function projcomments()
+    {
+        return $this->hasMany('App\Projcomment');
+    }
 }

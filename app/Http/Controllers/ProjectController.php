@@ -8,6 +8,7 @@ use App\Project;
 use App\User;
 use App\Todo;
 use App\File;
+use App\Projcomment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -45,6 +46,7 @@ class ProjectController extends Controller
                    $item['late'] = 'y';
                }
         });
+
         return view('projects.list')->with('visibleproj', $visibleproj)->with('today', $today);
     }
 
@@ -150,9 +152,10 @@ class ProjectController extends Controller
             }
             $todo['details'] = str_replace("'","\\'",$todo['details']); //Annars blank sida om ' förekommer
         });
+        $projcomments = Projcomment::where('project_id', $project->id)->orderBy('id', 'DESC')->get();
+        //dd($projcomments->user->name);
 
-
-        return view('projects.show')->with('project',$project)->with('sharing',$sharing)->with('belongingtodos',$belongingtodos)->with('belongingfiles',$belongingfiles)->with('today',$today);
+        return view('projects.show')->with('project',$project)->with('sharing',$sharing)->with('belongingtodos',$belongingtodos)->with('belongingfiles',$belongingfiles)->with('projcomments',$projcomments)->with('today',$today);
     }
 
     /**
