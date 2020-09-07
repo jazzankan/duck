@@ -24,7 +24,9 @@
         <hr>
         <p><span class="font-weight-bold">Beskrivning:</span><br>
         {!! $project->description !!}</p>
+        @if($project->deadline)
         <p><span class="font-weight-bold">Deadline:</span> {{ $project->deadline }}</p>
+        @endif
         @if(count($belongingfiles) > 0)
         <ul class="list-group-horizontal nomargin">
                 <li class="list-inline-item font-weight-bold nomargin">Tillhörande filer: </li>
@@ -41,11 +43,23 @@
                     @endforeach
             </ul>
         @endif
+        @if(count($projcomments) > 0)
         <p><span class="font-weight-bold">Kommentarer:</span><br>
         @foreach($projcomments as $c)
+                @if($loop->iteration > 2)
+                    @break
+                @endif
             <p>{{ $c->body }}<br><i>{{ $c->user->name }}</i></p>
         @endforeach
-
+        @endif
+        @if(count($projcomments) > 2)
+            <a href="#" v-on:click="memfilter = !memfilter"><b>Tidigare kommentarer</b></a>
+            @foreach($projcomments as $c)
+                @if($loop->iteration > 2)
+                    <p>{{ $c->body }}<br><i>{{ $c->user->name }}</i></p>
+                @endif
+            @endforeach
+            @endif
         <hr>
             <div class="todos">
                 <div>
