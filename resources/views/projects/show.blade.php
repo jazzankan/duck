@@ -49,17 +49,17 @@
                 @if($loop->iteration > 2)
                     @break
                 @endif
-            <p>{{ $c->body }}<br><i>{{ $c->user->name }}</i></p>
+                <p><span class="commentbody">{{ $c->body }}</span><br>{{ $c->created_at }}<br><i><b>{{ $c->user->name }}</b></i></p>
         @endforeach
         @endif
         @if(count($projcomments) > 2)
             <a href="#" v-on:click="memfilter = !memfilter"><b>Tidigare kommentarer</b></a>
+        @endif
             @foreach($projcomments as $c)
                 @if($loop->iteration > 2)
-                    <p>{{ $c->body }}<br><i>{{ $c->user->name }}</i></p>
+                    <div v-show="memfilter"><span class="commentbody">{{ $c->body }}</span><br>{{ $c->created_at }}<br><i><b>{{ $c->user->name }}</b></i></div>
                 @endif
             @endforeach
-            @endif
         <hr>
             <div class="todos">
                 <div>
