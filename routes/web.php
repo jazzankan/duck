@@ -57,6 +57,8 @@ Route::resources(['/categories' => 'CategoryController']);
 
 Route::resources(['/comments' => 'CommentController']);
 
+Route::resources(['/projcomments' => 'ProjcommentController']);
+
 
 
 
