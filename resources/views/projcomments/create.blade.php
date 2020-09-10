@@ -2,13 +2,14 @@
 
 @section('content')
     <div class="container">
-        <h1>Kommentera projektet ...</h1>
+        <h1>Kommentera projektet "{{ $project->title }}"</h1>
         <form method="post" action="{{ route('projcomments.store') }}">
             @csrf
             <div class="form-group row">
                 <div class="col-sm-8">
                     <label for="name">Jag vill bara säga:</label>
                     <input type="text" class="form-control" value="{{ old('body') }}" name="body"/>
+                    <input type="hidden" class="form-control" value="{{ $project->id }}" name="project_id"/>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Skapa</button>

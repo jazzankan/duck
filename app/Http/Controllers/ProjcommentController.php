@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Projcomment;
+use App\Project;
 use Illuminate\Http\Request;
 
 class ProjcommentController extends Controller
@@ -27,9 +28,12 @@ class ProjcommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view ('projcomments.create');
+        $projectid = $request->projid;
+        $project = Project::where('id',$projectid)->first();
+
+        return view ('projcomments.create')->with('project',$project);
     }
 
     /**
@@ -40,7 +44,14 @@ class ProjcommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'project_id' => 'required | int',
+            'body' => 'required | min:3'
+        ]);
+        $attributes['user_id'] = auth()->id();
+        Projcomment::create($attributes);
+
+        return redirect('/projects/'.$attributes['project_id']);
     }
 
     /**
