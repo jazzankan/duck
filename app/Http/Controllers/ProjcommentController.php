@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Projcomment;
 use App\Project;
+use App\User;
+use App\Notifications\NewProjcomment;
 use Illuminate\Http\Request;
 
 class ProjcommentController extends Controller
@@ -50,6 +52,10 @@ class ProjcommentController extends Controller
         ]);
         $attributes['user_id'] = auth()->id();
         Projcomment::create($attributes);
+
+        $anders = User::where('id', 1)->first();
+        $anders->notify(new NewProjcomment());
+
 
         return redirect('/projects/'.$attributes['project_id']);
     }
