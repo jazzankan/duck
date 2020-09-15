@@ -50,11 +50,24 @@ class ProjcommentController extends Controller
             'project_id' => 'required | int',
             'body' => 'required | min:3'
         ]);
+
         $attributes['user_id'] = auth()->id();
         Projcomment::create($attributes);
 
-        $anders = User::where('id', 1)->first();
-        $anders->notify(new NewProjcomment());
+        $project = Project::where('id',$request->project_id)->first();
+        $projectusers = $project->users()->get();
+        $user_id = auth()->id();
+
+        foreach ($projectusers as $pu){
+           if ($pu->id != $user_id){
+               $pu->notify(new NewProjcomment());
+           }
+       }
+
+
+
+        //$anders = User::where('id', 1)->first();
+        //$anders->notify(new NewProjcomment());
 
 
         return redirect('/projects/'.$attributes['project_id']);
