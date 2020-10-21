@@ -10663,6 +10663,11 @@ a.text-dark:focus {
   color: mediumblue;
 }
 
+.must {
+  color: brown;
+  font-weight: bold;
+}
+
 ul.sharing {
   padding-left: 0;
 }
@@ -10774,6 +10779,12 @@ ul.striped-list > li:nth-of-type(even) {
 
 .fullarticle {
   max-width: 750px;
+}
+
+@media only screen and (max-device-width: 640px) {
+  .buttcomment {
+    margin-top: 10px;
+  }
 }
 
 .navbar-laravel {

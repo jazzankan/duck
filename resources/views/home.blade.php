@@ -19,6 +19,7 @@
                     <p><a href="/comments">Nya bloggkommentarer</a></p>
                     <p><a href="/categories">Bloggkategorier</a> - skapa och redigera</p>
                     <p><a href="/about">Om Ankhemmet</a> - lite info för bloggbesökare</p>
+                    <p>Externa visningar: <b>{{ $visitingnumber }}</b>, sedan 2020-09-21</p>
                     <hr>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

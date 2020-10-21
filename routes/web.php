@@ -17,6 +17,17 @@ Route::get('/welcome', function () {
 Route::get('/about', function () {
     return view('about');
 });
+/*Route::get('ank.webbsallad.se/storage/files/{pathToFile}', function () {
+    if((auth()->user()) {
+        $pathtofile = storage_path();
+        //$pathtofile = $url = $request->url();
+        return response()->file($pathtofile);
+    }
+    else {
+        return "Fjöl av!";
+    }
+});*/
+Route::get('/storage/files/{fileName}', 'FileController@index');
 
 Route::get('/blog', 'BlogController@index');
 
@@ -25,6 +36,7 @@ Auth::routes(['register' => false]);
 Route:: get('/upload/{projectid}', function($projectid) {
     return view('upload')->with('projectid', $projectid);
 });
+
 Route:: get('/memupload/{memoryid}', function($memoryid) {
     return view('memupload')->with('memoryid', $memoryid);
 });

@@ -44,6 +44,12 @@ class BlogController extends Controller
         });
         $allart = Article::where('published','yes')->count();
         $thanks = Session::get('thanks');
+
+        if(!auth()->user()) {
+            $visitingnumber = file_get_contents("../counter.txt");
+            $visitingnumber = (int)$visitingnumber + 1;
+            file_put_contents("../counter.txt", $visitingnumber);
+        }
         return view('blog')->with('articles',$articles)->with('categories', $categories)->with('requestcid',$requestcid)->with('allart', $allart)->with('searchterm', $searchterm)->with('thanks', $thanks);
     }
 }

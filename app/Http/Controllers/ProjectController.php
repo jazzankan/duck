@@ -34,7 +34,7 @@ class ProjectController extends Controller
     });
         $visibleproj->each(function ($item, $key) {
             $this->late = false;
-            $belongingtodo = Todo::whereIn('project_id',[$item->id])->get();
+            $belongingtodo = Todo::where('project_id',$item->id)->get();
                if($belongingtodo){
                    $belongingtodo->each(function ($todoitem, $key){
                     if($todoitem['deadline'] < date('Y-m-d') && $todoitem['deadline'] != null && $todoitem['status'] != 'd' ) {

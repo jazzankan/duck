@@ -79,6 +79,12 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
+        if(!auth()->user()) {
+            $visitingnumber = file_get_contents("../counter.txt");
+            $visitingnumber = (int)$visitingnumber + 1;
+            file_put_contents("../counter.txt", $visitingnumber);
+        }
+
         return view('articles.show')->with('article', $article);
     }
 

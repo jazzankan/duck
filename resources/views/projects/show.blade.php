@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="container">
-        <p><a href="/projects" class="btn btn-primary btn-sm">Projektlistan</a> <a href="/projects/{{ $project->id }}/edit" class="btn btn-primary btn-sm">Redigera projektet</a> <a href="/upload/{{ $project->id }}" class="btn btn-primary btn-sm">Ladda upp fil</a> <a href="/projcomments/create?projid={{ $project->id }}" class="btn btn-secondary btn-sm">Ny kommentar</a></p>
+        <p><a href="/projects" class="btn btn-primary btn-sm">Projektlistan</a> <a href="/projects/{{ $project->id }}/edit" class="btn btn-primary btn-sm">Redigera projektet</a> <a href="/upload/{{ $project->id }}" class="btn btn-primary btn-sm">Ladda upp fil</a> <a href="/projcomments/create?projid={{ $project->id }}" class="btn btn-secondary btn-sm buttcomment">Ny kommentar</a></p>
         <h1>{{ $project->title }}</h1>
         <hr>
         <p><span class="font-weight-bold">Beskrivning:</span><br>

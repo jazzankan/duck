@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $visitingnumber = file_get_contents("../counter.txt");
+        return view('home')->with('visitingnumber',$visitingnumber);
     }
 
 }
