@@ -32,8 +32,8 @@
             <div class="form-group">
                 Dela projektet med:<br>
                 <select multiple name="selshare[]">
-                    @foreach($usernames as $s)
-                            <option value ="{{ $s }}">{{ $s }}</option>
+                    @foreach($usersminusme as $s)
+                            <option value ="{{ $s->name }}">{{ $s->name }}</option>
                     @endforeach
                 </select>
             </div>

@@ -57,16 +57,12 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $myname = auth()->user()->name;
-        $users = User::all();
-        $usernames = array();
-        foreach ($users as $u) {
-            if($u->name !== $myname) {
-                array_push($usernames, $u->name);
-            }
-        };
+        //$myname = auth()->user()->name;
+        $myid = auth()->user()->id;
+        $allusers = User::all();
+        $usersminusme = $allusers->where('id','!=',$myid);
 
-        return view ('projects.create')->with('usernames',$usernames);
+        return view ('projects.create')->with('usersminusme',$usersminusme);
     }
 
     /**
