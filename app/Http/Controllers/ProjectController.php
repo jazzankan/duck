@@ -85,7 +85,6 @@ class ProjectController extends Controller
             'must' => 'required',
             'visible' => 'required'
         ]);
-        //$attributes['user_id'] = auth()->id();
 
         $project = Project::create($attributes);
 
@@ -95,8 +94,6 @@ class ProjectController extends Controller
 
         if($request['selshare'] !== null) {
             $getSharingUsers = User::whereIn('name', $request['selshare'])->get();
-
-            //Avstår tills vidare från funktion för att återta delning.
 
             foreach ($getSharingUsers as $g) {
                 if (!$g->projects->contains($project->id)) {
@@ -172,6 +169,7 @@ class ProjectController extends Controller
                 array_push($usernames, $u->name);
                     }
                 };
+        // Det finns ett scope i model User, en metod kallad scopeShared. Den returnerar namnen på dem som delar projektet. Och den anropas med bara Shared.
         $sharing = User::Shared($myname, $project);
 
         return view('projects.edit')->with('project',$project)->with('usernames',$usernames)->with('sharing',$sharing);
@@ -214,16 +212,27 @@ class ProjectController extends Controller
 
         if($request['selshare']) {
             $getSharingUsers = User::whereIn('name', $request['selshare'])->get();
-
-            //Avstår tills vidare från funktion för att återta delning.
             foreach ($getSharingUsers as $g) {
                 if (!$g->projects->contains($project->id)) {
                     $g->projects()->attach($project->id);
                 }
+
                 if($request['sendmail']) {
                     if ($g->id !== $user_id) {
                         $g->notify(new ChangedProject());
                     }
+                }
+            }
+            foreach ($allUsers as $a) {
+                if ($a->projects->contains($project->id) && $getSharingUsers->where('name', $a->name)->count() === 0 && $a->id != $me->id) {
+                    $a->projects()->detach($project->id);
+                }
+            }
+        }
+        else {
+            foreach ($allUsers as $a) {
+                if ($a->projects->contains($project->id) && $a->id != $me->id) {
+                    $a->projects()->detach($project->id);
                 }
             }
         }
