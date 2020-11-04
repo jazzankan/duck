@@ -49029,6 +49029,8 @@ var app = new Vue({
     getSelshare: function getSelshare() {
       if (document.getElementsByName("selshare[]")[0].value) {
         this.selshare = true;
+      } else {
+        this.selshare = false;
       }
 
       return this.selshare;

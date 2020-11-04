@@ -63,9 +63,13 @@ const app = new Vue({
             }
             },
         getSelshare : function() {
-            if (document.getElementsByName("selshare[]")[0].value) {
+            if(document.getElementsByName("selshare[]")[0].value) {
                 this.selshare = true;
             }
+            else{
+                this.selshare = false;
+            }
+
             return this.selshare;
         },
         blogcatall : function(){

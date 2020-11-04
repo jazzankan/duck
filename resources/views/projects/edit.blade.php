@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 Dela projektet med:<br>
-                <select multiple name="selshare[]">
+                <select multiple name="selshare[]" v-on:click="getSelshare()">
                     @foreach($usernames as $s)
                         @if(in_array( $s, $sharing))
                         <option value ="{{ $s }}" selected>{{ $s }}</option>
