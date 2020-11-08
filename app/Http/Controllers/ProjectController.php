@@ -24,14 +24,23 @@ class ProjectController extends Controller
         $this->middleware('auth');  //->only(['store','update']) eller ->except....
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $today = date('Y-m-d');
         $late = false;
         $projectlist = auth()->user()->projects->sortByDesc('must');
-        $visibleproj = $projectlist->filter(function ($item){
-        return $item->visible === 'y';
-    });
+        $currentQueries = $request->query();
+        if($currentQueries && $currentQueries['arkiv'] ==='y') {
+            $visibleproj = $projectlist->filter(function ($item) {
+                return $item->visible === 'n';
+            });
+        }
+        else{
+                $visibleproj = $projectlist->filter(function ($item) {
+                    return $item->visible === 'y';
+                });
+            }
+
         $visibleproj->each(function ($item, $key) {
             $this->late = false;
             $belongingtodo = Todo::where('project_id',$item->id)->get();
@@ -119,6 +128,7 @@ class ProjectController extends Controller
         $today = date('Y-m-d');
         $myname = auth()->user()->name;
         $sharing = User::Shared($myname, $project);
+        //$belongingfiles = File::where('projectid',$project->id)->get();
         $belongingfiles = File::whereIn('projectid',[$project->id])->get();
         $belongingtodos = Todo::whereIn('project_id', [$project->id])->orderBy('deadline', 'ASC')->get();
 
