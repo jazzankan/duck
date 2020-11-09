@@ -27,15 +27,17 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $today = date('Y-m-d');
-        $late = false;
+        $archived = false;
         $projectlist = auth()->user()->projects->sortByDesc('must');
         $currentQueries = $request->query();
         if($currentQueries && $currentQueries['arkiv'] ==='y') {
+            $archived = true;
             $visibleproj = $projectlist->filter(function ($item) {
                 return $item->visible === 'n';
             });
         }
         else{
+                $archived = false;
                 $visibleproj = $projectlist->filter(function ($item) {
                     return $item->visible === 'y';
                 });
@@ -56,7 +58,7 @@ class ProjectController extends Controller
                }
         });
 
-        return view('projects.list')->with('visibleproj', $visibleproj)->with('today', $today);
+        return view('projects.list')->with('visibleproj', $visibleproj)->with('today', $today)->with('archived',$archived);
     }
 
     /**
