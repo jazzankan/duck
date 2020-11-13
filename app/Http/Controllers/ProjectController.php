@@ -130,9 +130,8 @@ class ProjectController extends Controller
         $today = date('Y-m-d');
         $myname = auth()->user()->name;
         $sharing = User::Shared($myname, $project);
-        //$belongingfiles = File::where('projectid',$project->id)->get();
-        $belongingfiles = File::whereIn('projectid',[$project->id])->get();
-        $belongingtodos = Todo::whereIn('project_id', [$project->id])->orderBy('deadline', 'ASC')->get();
+        $belongingfiles = File::where('projectid',$project->id)->get();
+        $belongingtodos = Todo::where('project_id',$project->id)->orderBy('deadline', 'ASC')->get();
 
         $detlink = false;
 
@@ -181,6 +180,7 @@ class ProjectController extends Controller
                 array_push($usernames, $u->name);
                     }
                 };
+
         // Det finns ett scope i model User, en metod kallad scopeShared. Den returnerar namnen på dem som delar projektet. Och den anropas med bara Shared.
         $sharing = User::Shared($myname, $project);
 
@@ -269,6 +269,13 @@ class ProjectController extends Controller
 
         foreach($allUsers as $a) {
             $a->projects()->detach($project);
+        }
+
+        $allProjcomments = Projcomment::all();
+        foreach($allProjcomments as $c) {
+            if($c->project_id === $project->id){
+                $c->delete();
+            }
         }
 
         $project->delete();
