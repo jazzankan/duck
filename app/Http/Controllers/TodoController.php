@@ -161,13 +161,11 @@ class TodoController extends Controller
             $query->where('project_id', '=',$thisprojid);
         })->get();
 
-        if($request['smail']) {
         foreach ($mailusers as $mu) {
             if ($mu->id !== $myself) {
                 $mu->notify(new ChangedProject($new, $fixed));
             }
         }
-    }
 
         return redirect('/projects/' . $thisprojid);
     }

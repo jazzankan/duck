@@ -196,7 +196,6 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-
         if($request['delete'] === 'delete'){
             $this->destroy($project);
             return redirect('/projects');

@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="radio">
-                <label><input type="radio" name="must" value="y" {{ (old('must') === 'n') ? '' : 'checked' }}>Plikt</label>
+                <label><input type="radio" name="must" value="y" {{ (old('must') === 'n') ? '' : 'checked' }}>Plikt </label>
             </div>
             <div class="radio">
                 <label><input type="radio" name="must" {{ (old('must') === 'n') ? 'checked' : '' }} value="n">Hobby eller nöje</label>
